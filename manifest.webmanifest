@@ -1,0 +1,14 @@
+{
+  "name": "Asael",
+  "short_name": "Asael",
+  "description": "Conectando empresas e profissionais",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#050A18",
+  "theme_color": "#050A18",
+  "lang": "pt-BR",
+  "icons": [
+    { "src": "assets/logos/icon.png", "sizes": "256x256", "type": "image/png" },
+    { "src": "assets/logos/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

@@ -14,7 +14,7 @@ No computador, a interface aparece em um recorte de celular.
 
 1. Tela de abertura e carrossel de apresentação (deslize ou toque em Continuar).
 2. **Criar conta** ou **Entrar** (qualquer e-mail/senha funciona).
-3. Depois da verificação, escolha um perfil: Empresa Contratante, Empresa Terceirizada ou Profissional. O botão **Trocar perfil** fica disponível nas telas principais.
+3. Depois da verificação, escolha um perfil: **Contratante**, **Empresa Terceirizada** ou **Colaborador**. A faixa azul no topo troca de perfil.
 
 Fluxos para testar:
 

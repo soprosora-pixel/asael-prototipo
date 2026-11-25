@@ -24,26 +24,68 @@
     chevron: svg(`<path d="M9 6l6 6-6 6"/>`),
     brief: svg(`<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M3 13h18"/>`),
     people: svg(`<circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0112 0"/><circle cx="17" cy="9" r="2.3"/><path d="M17 13a5 5 0 014 7"/>`),
-    star: svg(`<path d="M12 3l2.4 5.7L21 9.5l-4.5 4 1.2 6.5L12 17.3 6.3 20l1.2-6.5L3 9.5l6.6-.8z"/>`, "0 0 24 24"),
+    star: svg(`<path d="M12 3l2.4 5.7L21 9.5l-4.5 4 1.2 6.5L12 17.3 6.3 20l1.2-6.5L3 9.5l6.6-.8z"/>`),
     alert: svg(`<path d="M12 8v5M12 16.5h.01"/><path d="M10.3 4.2L2.8 17a2 2 0 001.7 3h15a2 2 0 001.7-3L13.7 4.2a2 2 0 00-3.4 0z"/>`),
     close: svg(`<path d="M6 6l12 12M18 6L6 18"/>`),
     logout: svg(`<path d="M9 6H5v12h4M10 12h9M15 8l4 4-4 4"/>`),
     card: svg(`<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/>`),
     file: svg(`<path d="M13 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M13 3v5h5"/>`),
-    heart: svg(`<path d="M12 5c1.5-2 5-2.2 6.5 0C20.5 7.2 20 11 12 17 4 11 3.5 7.2 5.5 5 7 2.8 10.5 3 12 5z"/>`),
     info: svg(`<circle cx="12" cy="12" r="9"/><path d="M12 10v6M12 7.5h.01"/>`),
     lock: svg(`<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/>`),
     nurse: svg(`<circle cx="12" cy="8" r="3.2"/><path d="M4.5 20a7.5 7.5 0 0115 0"/><path d="M12 13v3M10.5 14.5h3"/>`),
-    skip: svg(`<path d="M5 12h14M13 6l6 6-6 6"/>`),
+    bag: svg(`<path d="M6 8h12l-1 13H7L6 8z"/><path d="M9 8V6a3 3 0 016 0v2"/>`),
+    trash: svg(`<path d="M4 7h16M9 7V5h6v2M8 7l1 13h6l1-13"/>`),
   };
 
   const CATS = [
-    { id: "vigilancia", name: "Vigilância", short: "Vigilância", min: 20, rec: 20.5, fee: 1.5, cut: 2.5, legal: "vigilancia" },
-    { id: "portaria", name: "Portaria e controle de acesso", short: "Portaria", min: 14, rec: 16, fee: 1, cut: 2 },
-    { id: "bombeiro", name: "Bombeiro civil", short: "Bombeiro civil", min: 18, rec: 18.5, fee: 1.5, cut: 2.5 },
-    { id: "brigadista", name: "Brigadista", short: "Brigadista", min: 14, rec: 15, fee: 1, cut: 2 },
-    { id: "limpeza", name: "Limpeza", short: "Limpeza", min: 13, rec: 14, fee: 1, cut: 2 },
-    { id: "enfermagem", name: "Técnico de enfermagem", short: "Enfermagem", min: 18, rec: 22, fee: 1.5, cut: 2.5 },
+    {
+      id: "vigilancia", name: "Vigilante", short: "Vigilante",
+      min: 20, rec: 20.5, cut: 2, legal: "vigilancia",
+      docs: [
+        { id: "cnv", title: "CNV (Carteira Nacional de Vigilante)", sub: "Dentro da validade" },
+        { id: "rec-vig", title: "Certificado de reciclagem", sub: "Em dia, conforme a validade" },
+        { id: "ant-vig", title: "Certidão de antecedentes criminais", sub: "Emitida recentemente" },
+      ],
+    },
+    {
+      id: "portaria", name: "Segurança e controle de acesso", short: "Controle de acesso",
+      min: 14, rec: 16, cut: 2,
+      docs: [
+        { id: "rg-port", title: "RG e CPF", sub: "Documento oficial com foto" },
+        { id: "ant-port", title: "Certidão de antecedentes criminais", sub: "Emitida recentemente" },
+      ],
+    },
+    {
+      id: "bombeiro", name: "Bombeiro civil", short: "Bombeiro civil",
+      min: 18, rec: 18.5, cut: 2,
+      docs: [
+        { id: "nbr", title: "Certificado de formação — NBR 14608", sub: "Curso de bombeiro civil" },
+        { id: "rec-bomb", title: "Certificado de reciclagem", sub: "Em dia" },
+      ],
+    },
+    {
+      id: "brigadista", name: "Brigadista", short: "Brigadista",
+      min: 14, rec: 15, cut: 2,
+      docs: [
+        { id: "brig", title: "Certificado de brigada de incêndio", sub: "Conforme NBR 14276" },
+      ],
+    },
+    {
+      id: "limpeza", name: "Limpeza", short: "Limpeza",
+      min: 13, rec: 14, cut: 2,
+      docs: [
+        { id: "rg-limp", title: "RG e CPF", sub: "Documento oficial com foto" },
+        { id: "cv-limp", title: "Currículo ou experiência", sub: "Arquivo ou declaração" },
+      ],
+    },
+    {
+      id: "enfermagem", name: "Técnico de enfermagem", short: "Enfermagem",
+      min: 18, rec: 22, cut: 2,
+      docs: [
+        { id: "coren", title: "COREN", sub: "Carteira profissional dentro da validade" },
+        { id: "form-enf", title: "Diploma ou certificado de formação", sub: "Técnico ou superior em enfermagem" },
+      ],
+    },
   ];
   const catBy = (id) => CATS.find((c) => c.id === id);
 
@@ -56,19 +98,25 @@
     enfermagem: ic.nurse,
   };
 
+  const STATUS_LABEL = {
+    aprovado: "Aprovado",
+    "em-analise": "Em análise",
+    pendente: "Pendente",
+  };
+
   const USERS = {
-    contratante: { name: "Eventos Aurora", roleLabel: "Empresa contratante", city: "Joinville, SC", initials: "EA" },
-    terceirizada: { name: "Sul Seguranças", roleLabel: "Empresa terceirizada", city: "Joinville, SC", initials: "SS" },
-    profissional: { name: "Carlos Mendes", roleLabel: "Vigilante", city: "Joinville, SC", initials: "CM", avatar: "assets/avatars/avatar-carlos.webp", stars: 4.9, category: "Vigilante" },
+    contratante: { name: "Eventos Aurora", roleLabel: "Contratante", city: "Joinville, SC", initials: "EA" },
+    terceirizada: { name: "Sul Seguranças", roleLabel: "Empresa Terceirizada", city: "Joinville, SC", initials: "SS" },
+    colaborador: { name: "Carlos Mendes", roleLabel: "Colaborador", city: "Joinville, SC", initials: "CM", avatar: "assets/avatars/avatar-carlos.webp", stars: 4.9 },
   };
 
   const TEAM = [
     { name: "Carlos Mendes", role: "Vigilante", stars: 4.9, avatar: "assets/avatars/avatar-carlos.webp", initials: "CM" },
-    { name: "Ana Paula Souza", role: "Portaria", stars: 4.8, avatar: "assets/avatars/avatar-ana.webp", initials: "AP" },
+    { name: "Ana Paula Souza", role: "Controle de acesso", stars: 4.8, avatar: "assets/avatars/avatar-ana.webp", initials: "AP" },
     { name: "Rafael Lima", role: "Bombeiro civil", stars: 5.0, avatar: "assets/avatars/avatar-rafael.webp", initials: "RL" },
     { name: "Lucas Ferreira", role: "Vigilante", stars: 4.7, avatar: "assets/avatars/avatar-lucas.webp", initials: "LF" },
     { name: "Juliana Costa", role: "Enfermagem", stars: 4.9, initials: "JC" },
-    { name: "Bruno Alves", role: "Brigadista", stars: 4.6, initials: "BA" },
+    { name: "Bruno Alves", role: "Limpeza", stars: 4.6, initials: "BA" },
   ];
 
   const EVENTS = [
@@ -79,15 +127,19 @@
       address: "Rua XV de Novembro, 4315 — América, Joinville, SC",
       when: "12 dez • 18h–06h",
       date: "12 de dezembro de 2026",
+      dateISO: "2026-12-12",
       start: "18:00",
       end: "06:00",
       hours: 12,
       days: 1,
-      qty: 24,
-      cat: "vigilancia",
-      rate: 20.5,
       photo: "assets/photos/noite.webp",
       status: "confirmado",
+      functions: [
+        { cat: "vigilancia", qty: 10, rate: 20.5 },
+        { cat: "bombeiro", qty: 4, rate: 18.5 },
+        { cat: "enfermagem", qty: 2, rate: 22 },
+        { cat: "limpeza", qty: 6, rate: 14 },
+      ],
     },
     {
       id: "mueller",
@@ -96,15 +148,14 @@
       address: "Rua Princesa Isabel, 438 — Centro, Joinville, SC",
       when: "27 nov • 10h–22h",
       date: "27 de novembro de 2026",
+      dateISO: "2026-11-27",
       start: "10:00",
       end: "22:00",
       hours: 12,
       days: 1,
-      qty: 8,
-      cat: "portaria",
-      rate: 16,
       photo: "assets/photos/portaria.webp",
       status: "aberto",
+      functions: [{ cat: "portaria", qty: 8, rate: 16 }],
     },
     {
       id: "centreventos",
@@ -113,80 +164,112 @@
       address: "Av. José Vieira, 315 — América, Joinville, SC",
       when: "05 dez • 08h–20h",
       date: "5 de dezembro de 2026",
+      dateISO: "2026-12-05",
       start: "08:00",
       end: "20:00",
       hours: 12,
       days: 2,
-      qty: 12,
-      cat: "bombeiro",
-      rate: 18.5,
       photo: "assets/photos/conferencia.webp",
       status: "aberto",
+      functions: [{ cat: "bombeiro", qty: 12, rate: 18.5 }],
     },
     {
       id: "atlantico",
-      title: "Portaria no Club Atlântico",
+      title: "Controle de acesso no Club Atlântico",
       place: "Club Atlântico",
       address: "Rua Visconde de Taunay, 890 — Bucarein, Joinville, SC",
       when: "28 nov • 22h–10h",
       date: "28 de novembro de 2026",
+      dateISO: "2026-11-28",
       start: "22:00",
       end: "10:00",
       hours: 12,
       days: 1,
-      qty: 6,
-      cat: "portaria",
-      rate: 16,
       photo: "assets/photos/balada.webp",
       status: "aberto",
+      functions: [{ cat: "portaria", qty: 6, rate: 16 }],
     },
   ];
 
+  const evFn = (ev, catId) => (ev.functions || []).find((f) => f.cat === catId) || ev.functions[0];
+  const evTotalPeople = (ev) => (ev.functions || []).reduce((n, f) => n + f.qty, 0);
+  const evCompanyTotal = (ev) =>
+    (ev.functions || []).reduce((n, f) => n + f.rate * ev.hours * ev.days * f.qty, 0);
+
   const SHIFTS = [
-    { id: "s1", event: "expoville", net: 18, spots: 4, distance: "3,2 km" },
-    { id: "s2", event: "mueller", net: 14, spots: 3, distance: "1,8 km" },
-    { id: "s3", event: "centreventos", net: 16, spots: 5, distance: "2,4 km" },
-    { id: "s4", event: "atlantico", net: 14, spots: 2, distance: "4,1 km" },
+    { id: "s1", event: "expoville", cat: "vigilancia", spots: 4, distance: "3,2 km" },
+    { id: "s2", event: "mueller", cat: "portaria", spots: 3, distance: "1,8 km" },
+    { id: "s3", event: "centreventos", cat: "bombeiro", spots: 5, distance: "2,4 km" },
+    { id: "s4", event: "atlantico", cat: "portaria", spots: 2, distance: "4,1 km" },
+    { id: "s5", event: "expoville", cat: "bombeiro", spots: 2, distance: "3,2 km" },
+    { id: "s6", event: "expoville", cat: "limpeza", spots: 3, distance: "3,2 km" },
   ];
 
   const TX = [
     { title: "Plantão Expoville", date: "8 nov 2026", value: 216, type: "in" },
-    { title: "Plantão Centreventos", date: "1 nov 2026", value: 216, type: "in" },
+    { title: "Plantão Centreventos", date: "1 nov 2026", value: 198, type: "in" },
     { title: "Saque Pix", date: "2 nov 2026", value: -400, type: "out" },
     { title: "Plantão Shopping Mueller", date: "25 out 2026", value: 168, type: "in" },
   ];
 
-  const state = {
-    role: null,
-    light: false,
-    onboardIndex: 0,
-    accountType: null,
-    request: {
-      cat: "vigilancia",
-      qty: 12,
+  function emptyEvent() {
+    return {
+      title: "Show no Expoville",
+      address: "Rua XV de Novembro, 4315 — América, Joinville, SC",
+      date: "2026-12-12",
       days: 1,
       hours: 12,
       start: "18:00",
       end: "06:00",
-      date: "2026-12-12",
       place: "Expoville",
-      address: "Rua XV de Novembro, 4315 — América, Joinville, SC",
-      title: "Show no Expoville",
-      rate: 20.5,
-      acceptLow: false,
-    },
+    };
+  }
+
+  function demoSegments() {
+    return {
+      vigilancia: "aprovado",
+      portaria: "aprovado",
+      bombeiro: "em-analise",
+      brigadista: "pendente",
+      limpeza: "pendente",
+      enfermagem: "pendente",
+    };
+  }
+
+  const state = {
+    role: null,
+    light: false,
+    accountType: null,
+    event: emptyEvent(),
+    item: { cat: "vigilancia", qty: 10, rate: 20.5, acceptLow: false, start: "18:00", end: "06:00", hours: 12, days: 1, date: "2026-12-12" },
+    cart: [],
+    confirmed: [],
+    segments: demoSegments(),
+    signupSegs: ["vigilancia"],
     accepted: {},
     checkins: {},
     checkinPhoto: null,
     uploads: {},
     rating: 0,
-    lastRequest: null,
+    lastEvent: null,
     toast: null,
+    simHours: 12,
+    simDays: 1,
+    shiftFilter: "all",
   };
 
   const brl = (n) =>
     (Number(n) || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
   const brlH = (n) => `${brl(n)}/h`;
+  function formatISO(iso) {
+    const m = String(iso || "").match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    return m ? `${m[3]}/${m[2]}/${m[1]}` : iso || "";
+  }
+  const isColab = () => state.role === "colaborador";
+  const isCompany = () => state.role === "contratante" || state.role === "terceirizada";
+  const approvedSegs = () => CATS.filter((c) => state.segments[c.id] === "aprovado").map((c) => c.id);
+  const cartPeople = () => state.cart.reduce((n, i) => n + i.qty, 0);
+  const cartTotal = () => state.cart.reduce((n, i) => n + i.rate * i.hours * i.days * i.qty, 0);
 
   function stars(n) {
     const full = Math.round(n);
@@ -210,33 +293,37 @@
     return n.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 
-  function pricing(cat, rate, qty, hours, days) {
-    const c = typeof cat === "string" ? catBy(cat) : cat;
-    const r = rate;
-    const peopleHours = qty * hours * days;
-    const feeHour = c.fee;
-    const upfront = feeHour * peopleHours;
-    const gross = r * peopleHours;
-    const cut = c.cut * peopleHours;
-    const netHour = Math.max(0, r - c.cut);
-    const net = netHour * peopleHours;
-    const rest = Math.max(0, gross - upfront);
-    let level = "ok";
-    if (r < c.min) level = "block";
-    else if (r < c.rec) level = "warn";
-    return { c, r, qty, hours, days, peopleHours, feeHour, upfront, gross, cut, netHour, net, rest, level };
+  function lineTotal(i) {
+    return i.rate * i.hours * i.days * i.qty;
   }
 
-  function warningCopy(p) {
-    const rec = brlH(p.c.rec);
-    const min = brlH(p.c.min);
-    if (p.level === "block") {
-      return `O valor está abaixo do mínimo de ${min} para ${p.c.short.toLowerCase()}. Ajuste o valor para continuar.`;
+  function rateLevel(cat, rate) {
+    const c = typeof cat === "string" ? catBy(cat) : cat;
+    if (rate < c.min) return "block";
+    if (rate < c.rec) return "warn";
+    return "ok";
+  }
+
+  function warningCopy(c, rate) {
+    const rec = brlH(c.rec);
+    const min = brlH(c.min);
+    const level = rateLevel(c, rate);
+    if (level === "block") {
+      return `O valor está abaixo do mínimo de ${min} para ${c.short.toLowerCase()}. Ajuste o valor para continuar.`;
     }
-    if (p.c.id === "vigilancia") {
-      return `O valor está abaixo do recomendado de ${rec}. Valores mais baixos dificultam o preenchimento da vaga, podem gerar avaliações ruins dos profissionais e chamam a atenção do sindicato da categoria. Deseja mesmo assim continuar?`;
+    if (c.id === "vigilancia") {
+      return `O valor está abaixo do recomendado de ${rec}. Valores mais baixos dificultam o preenchimento da vaga, podem gerar avaliações ruins dos colaboradores e chamam a atenção do sindicato da categoria. Deseja mesmo assim continuar?`;
     }
     return `O valor está abaixo do recomendado de ${rec}. Plantões com valor menor costumam demorar mais para preencher e podem gerar avaliações ruins. Deseja mesmo assim continuar?`;
+  }
+
+  function shiftPay(s) {
+    const ev = EVENTS.find((e) => e.id === s.event);
+    const c = catBy(s.cat);
+    const fn = evFn(ev, s.cat);
+    const rate = fn.rate;
+    const netHour = Math.max(0, rate - c.cut);
+    return { ev, c, rate, cut: c.cut, netHour, hours: ev.hours, days: ev.days, gross: rate * ev.hours, fee: c.cut * ev.hours, net: netHour * ev.hours };
   }
 
   /* ------------ router ------------ */
@@ -261,16 +348,15 @@
     render();
   }
 
-  window.addEventListener("popstate", (e) => {
-    navDir = (e.state && e.state.dir === "left") ? "right" : "right";
+  window.addEventListener("popstate", () => {
+    navDir = "right";
     render();
   });
 
   function render() {
     appEl.classList.toggle("light", state.light);
     const p = path();
-    const html = route(p);
-    view.innerHTML = html;
+    view.innerHTML = route(p);
     bind(p);
     if (state.toast) {
       setTimeout(() => {
@@ -286,11 +372,11 @@
       case "welcome": return renderWelcome();
       case "login": return renderLogin();
       case "tipo": return renderTipo();
-      case "cadastro": return renderCadastro();
+      case "cadastro": return renderCadastro(p.id);
       case "verificacao": return renderVerificacao();
       case "demo": return renderDemo();
       case "home": return renderHome();
-      case "solicitar": return renderSolicitar(p.id || "cat");
+      case "solicitar": return renderSolicitar(p.id || "evento");
       case "evento": return renderEvento(p.id);
       case "vaga": return renderVaga(p.id);
       case "checkin": return renderCheckin(p.id);
@@ -299,17 +385,24 @@
       case "pagamentos": return renderPagamentos();
       case "avaliar": return renderAvaliar(p.id);
       case "perfil": return renderPerfil();
+      case "segmentos": return renderSegmentos();
       default: return renderSplash();
     }
   }
 
   const anim = () => (navDir === "right" ? "slide-right" : navDir === "none" ? "" : "slide-left");
 
-  function topbar(title, backTo) {
+  function cartBtn() {
+    if (!isCompany()) return `<span style="width:40px"></span>`;
+    const n = state.cart.length;
+    return `<button class="icon-btn cart-btn" data-go="#/solicitar/carrinho" aria-label="Carrinho do evento">${ic.bag}${n ? `<span class="cart-badge">${n}</span>` : ""}</button>`;
+  }
+
+  function topbar(title, backTo, withCart = false) {
     return `<header class="topbar">
       ${backTo ? `<button class="icon-btn" data-go="${backTo}" data-dir="right" aria-label="Voltar">${ic.back}</button>` : `<span style="width:40px"></span>`}
       <div class="head-title">${title}</div>
-      <span style="width:40px"></span>
+      ${withCart ? cartBtn() : `<span style="width:40px"></span>`}
     </header>`;
   }
 
@@ -319,8 +412,7 @@
   }
 
   function tabbar(active) {
-    const isPro = state.role === "profissional";
-    const items = isPro
+    const items = isColab()
       ? [
           ["home", "Início", ic.home, "#/home"],
           ["plantoes", "Plantões", ic.calendar, "#/plantoes"],
@@ -345,6 +437,19 @@
     return state.toast ? `<div class="toast">${state.toast}</div>` : "";
   }
 
+  function benefits(items) {
+    return `<div class="benefits">${items
+      .map(
+        (b) => `<div class="benefit"><div class="ico">${b.icon}</div><div><b>${b.t}</b><p>${b.d}</p></div></div>`
+      )
+      .join("")}</div>`;
+  }
+
+  function statusBadge(st) {
+    const cls = st === "aprovado" ? "badge-ok" : st === "em-analise" ? "badge-warn" : "badge-muted";
+    return `<span class="badge ${cls}">${STATUS_LABEL[st] || "Pendente"}</span>`;
+  }
+
   /* ------------ screens: intro ------------ */
   function renderSplash() {
     return `<section class="screen splash">
@@ -358,26 +463,26 @@
       {
         img: "assets/photos/onboard-1.webp",
         k: "Como funciona",
-        t: "Profissionais verificados, na hora que você precisa",
-        d: "A empresa publica o plantão, os profissionais aceitam no app e o check-in é feito com foto e GPS. Tudo no mesmo lugar.",
+        t: "Colaboradores verificados, na hora que você precisa",
+        d: "A contratante monta a equipe, os colaboradores aceitam no app e o check-in é feito com foto e GPS. Tudo no mesmo lugar.",
       },
       {
         img: "assets/photos/onboard-2.webp",
-        k: "Para empresas",
-        t: "Monte a equipe do evento em minutos",
-        d: "Solicite pelo app, pague em um único Pix para as contas Asael e tenha comprovante pronto para a contabilidade.",
+        k: "Para contratantes e empresas terceirizadas",
+        t: "Monte a equipe completa do evento em minutos",
+        d: "Adicione vigilantes, bombeiros, enfermagem e limpeza no mesmo pedido, com um único pagamento pelo app.",
       },
       {
         img: "assets/photos/onboard-3.webp",
-        k: "Para profissionais",
-        t: "Escolha o plantão e veja o valor líquido",
-        d: "Aceite vagas perto de você, faça o check-in no local e receba na sua conta Asael, com o líquido visível antes de aceitar.",
+        k: "Para o colaborador",
+        t: "Mais segmentos, mais oportunidades",
+        d: "Habilite as funções para as quais você tem curso, veja o valor líquido antes de aceitar e receba na conta Asael.",
       },
       {
         img: "assets/photos/onboard-4.webp",
         k: "Pagamento seguro",
         t: "Só existe pagamento dentro do app",
-        d: "O Pix vai para a chave Asael do profissional. Quem pagar ou receber por fora é banido — dos dois lados.",
+        d: "O Pix vai para a chave Asael do colaborador. Quem pagar ou receber por fora é banido — dos dois lados.",
       },
     ];
     return `<section class="screen onboard">
@@ -410,8 +515,8 @@
       <div class="scroll" style="display:flex;flex-direction:column">
         <div style="padding: calc(28px + var(--safe-t)) 24px 0; text-align:center">
           <img class="logo-hero" src="assets/logos/logo.webp" alt="Asael" />
-          <h1 style="font-size:26px;margin:8px 0 8px">Profissionais verificados, na hora que você precisa</h1>
-          <p class="muted" style="font-size:15px;line-height:1.45">Conectamos empresas e profissionais em Santa Catarina, com pagamento seguro dentro do app.</p>
+          <h1 style="font-size:26px;margin:8px 0 8px">Colaboradores verificados, na hora que você precisa</h1>
+          <p class="muted" style="font-size:15px;line-height:1.45">Conectamos contratantes, empresas terceirizadas e colaboradores em Santa Catarina, com pagamento seguro dentro do app.</p>
         </div>
         <div style="flex:1;min-height:16px"></div>
         <div style="padding: 0 20px calc(24px + var(--safe-b))">
@@ -439,9 +544,9 @@
 
   function renderTipo() {
     const types = [
-      { id: "profissional", icon: ic.people, t: "Profissional", d: "Vigilante, portaria, bombeiro civil, brigadista, limpeza ou enfermagem" },
-      { id: "terceirizada", icon: ic.shield, t: "Empresa de Segurança Terceirizada", d: "Empresa autorizada pela Polícia Federal. Pode publicar vagas de vigilância." },
-      { id: "contratante", icon: ic.brief, t: "Empresa Contratante", d: "Eventos, mercados, baladas e comércios que precisam montar uma equipe" },
+      { id: "colaborador", icon: ic.people, t: "Colaborador", d: "Vigilante, bombeiro civil, segurança e controle de acesso, brigadista, limpeza ou enfermagem. Dá para habilitar mais de um segmento." },
+      { id: "terceirizada", icon: ic.shield, t: "Empresa Terceirizada", d: "Empresa de segurança autorizada pela Polícia Federal. Publica vagas de vigilância e completa a equipe do evento." },
+      { id: "contratante", icon: ic.brief, t: "Contratante", d: "Eventos, mercados, baladas e comércios que precisam montar uma equipe pelo app." },
     ];
     const sel = state.accountType;
     return `<section class="screen ${anim()}">
@@ -464,62 +569,86 @@
     </section>`;
   }
 
-  function renderCadastro() {
-    const t = state.accountType || "profissional";
+  function renderCadastro(step) {
+    const t = state.accountType || "colaborador";
+    if (t === "colaborador") return renderCadastroColab(step);
     const titles = {
-      profissional: "Cadastro do profissional",
-      terceirizada: "Cadastro da empresa terceirizada",
-      contratante: "Cadastro da empresa contratante",
+      terceirizada: "Cadastro da Empresa Terceirizada",
+      contratante: "Cadastro da Contratante",
     };
-    let fields = "";
-    if (t === "profissional") {
-      fields = `
-        <div class="field"><label>Nome completo</label><input id="f-nome" value="Carlos Mendes" /></div>
-        <div class="field"><label>CPF</label><input id="f-cpf" inputmode="numeric" value="084.512.369-20" /></div>
-        <div class="field"><label>Telefone</label><input id="f-tel" inputmode="tel" value="(47) 98821-3044" /></div>
-        <div class="field"><label>E-mail</label><input id="f-email" type="email" value="carlos.mendes@email.com" /></div>
-        <div class="field"><label>Categoria principal</label>
-          <select id="f-cat">
-            <option value="vigilancia" selected>Vigilante</option>
-            <option value="portaria">Portaria e controle de acesso</option>
-            <option value="bombeiro">Bombeiro civil</option>
-            <option value="brigadista">Brigadista</option>
-            <option value="limpeza">Limpeza</option>
-            <option value="enfermagem">Técnico de enfermagem</option>
-          </select>
-        </div>
-        <p class="tiny" style="margin: 8px 0 10px">Documentos</p>
-        ${uploadBtn("cnv", "CNV (Carteira Nacional de Vigilante)", "Obrigatória para vagas de vigilância")}
-        ${uploadBtn("reciclagem", "Certificado de reciclagem", "Em dia, conforme a validade")}
-        ${uploadBtn("antecedentes", "Certidão de antecedentes criminais", "")}
-        ${uploadBtn("selfie", "Selfie para conferência", "O rosto deve aparecer nítido, como no documento")}
-        <p class="notice" style="margin: 8px 0 14px">A conta Asael para receber os plantões é criada automaticamente no cadastro. O pagamento só entra por essa chave Pix.</p>
-      `;
-    } else {
-      fields = `
-        <div class="field"><label>Razão social</label><input id="f-nome" value="${t === "terceirizada" ? "Sul Seguranças Ltda" : "Eventos Aurora Ltda"}" /></div>
-        <div class="field"><label>CNPJ</label><input id="f-cnpj" inputmode="numeric" value="${t === "terceirizada" ? "14.208.773/0001-61" : "38.441.902/0001-05"}" /></div>
-        <div class="field"><label>Cidade</label><input value="Joinville, SC" /></div>
-        <div class="field"><label>Telefone</label><input inputmode="tel" value="(47) 3433-1100" /></div>
-        <div class="field"><label>E-mail corporativo</label><input type="email" value="${t === "terceirizada" ? "contato@sulsegurancas.com.br" : "abel@eventosaurora.com.br"}" /></div>
-        ${
-          t === "terceirizada"
-            ? `${uploadBtn("pf", "Autorização da Polícia Federal", "Obrigatória para publicar vagas de vigilância")}
-               ${uploadBtn("contrato", "Contrato social", "")}`
-            : `${uploadBtn("contrato", "Contrato social ou CCMEI", "")}`
-        }
-      `;
-    }
+    const fields = `
+      <div class="field"><label>Razão social</label><input id="f-nome" value="${t === "terceirizada" ? "Sul Seguranças Ltda" : "Eventos Aurora Ltda"}" /></div>
+      <div class="field"><label>CNPJ</label><input id="f-cnpj" inputmode="numeric" value="${t === "terceirizada" ? "14.208.773/0001-61" : "38.441.902/0001-05"}" /></div>
+      <div class="field"><label>Cidade</label><input value="Joinville, SC" /></div>
+      <div class="field"><label>Telefone</label><input inputmode="tel" value="(47) 3433-1100" /></div>
+      <div class="field"><label>E-mail corporativo</label><input type="email" value="${t === "terceirizada" ? "contato@sulsegurancas.com.br" : "abel@eventosaurora.com.br"}" /></div>
+      ${
+        t === "terceirizada"
+          ? `${uploadBtn("pf", "Autorização da Polícia Federal", "Obrigatória para publicar vagas de vigilância")}
+             ${uploadBtn("contrato", "Contrato social", "")}`
+          : `${uploadBtn("contrato", "Contrato social ou CCMEI", "")}`
+      }
+    `;
     return `<section class="screen ${anim()}">
       ${topbar(titles[t], "#/tipo")}
       <div class="scroll pad">
         ${fields}
         <label class="check" style="margin: 8px 0 20px">
           <input type="checkbox" id="aceite" />
-          <span>Li e aceito os Termos de Uso. Pagamentos fora do aplicativo, por qualquer conta que não seja a conta Asael, resultam no banimento da empresa e do profissional.</span>
+          <span>Li e aceito os Termos de Uso. Pagamentos fora do aplicativo, por qualquer conta que não seja a conta Asael, resultam no banimento da empresa e do colaborador.</span>
         </label>
         <button class="btn btn-primary" id="enviarCadastro" disabled>Enviar cadastro</button>
         <p class="help" style="text-align:center;margin-top:10px">Protótipo: os arquivos não são enviados a nenhum servidor.</p>
+      </div>
+    </section>`;
+  }
+
+  function renderCadastroColab(step) {
+    const segs = state.signupSegs;
+    if (step === "docs") {
+      const selected = CATS.filter((c) => segs.includes(c.id));
+      return `<section class="screen ${anim()}">
+        ${topbar("Documentos por segmento", "#/cadastro")}
+        <div class="scroll pad">
+          <p class="muted small" style="margin-bottom:14px">Cada segmento tem a documentação própria. Quanto mais segmentos você habilitar, mais oportunidades de plantão.</p>
+          ${selected
+            .map(
+              (c) => `<div style="margin-bottom:16px">
+              <div class="tiny" style="margin-bottom:8px">${c.name}</div>
+              ${c.docs.map((d) => uploadBtn(d.id, d.title, d.sub)).join("")}
+            </div>`
+            )
+            .join("")}
+          ${uploadBtn("selfie", "Selfie para conferência", "O rosto deve aparecer nítido, como no documento")}
+          <label class="check" style="margin: 8px 0 20px">
+            <input type="checkbox" id="aceite" />
+            <span>Li e aceito os Termos de Uso. Receber o plantão fora da conta Asael resulta no banimento.</span>
+          </label>
+          <button class="btn btn-primary" id="enviarCadastro" disabled>Enviar cadastro</button>
+        </div>
+      </section>`;
+    }
+    return `<section class="screen ${anim()}">
+      ${topbar("Cadastro do colaborador", "#/tipo")}
+      <div class="scroll pad">
+        <div class="field"><label>Nome completo</label><input id="f-nome" value="Carlos Mendes" /></div>
+        <div class="field"><label>CPF</label><input id="f-cpf" inputmode="numeric" value="084.512.369-20" /></div>
+        <div class="field"><label>Telefone</label><input id="f-tel" inputmode="tel" value="(47) 98821-3044" /></div>
+        <div class="field"><label>E-mail</label><input id="f-email" type="email" value="carlos.mendes@email.com" /></div>
+        <h2 style="font-size:18px;margin:8px 0 6px">Em quais segmentos você atua?</h2>
+        <p class="muted small" style="margin-bottom:12px">Selecione todos os que tiver curso ou experiência. Mais segmentos, mais oportunidades de emprego — desde que o cadastro de cada um seja concluído.</p>
+        ${CATS.map((c) => {
+          const on = segs.includes(c.id);
+          return `<button class="seg-card ${on ? "on" : ""}" type="button" data-toggleseg="${c.id}">
+            <div class="box">${on ? ic.check : ""}</div>
+            <div style="flex:1">
+              <b style="font-size:14px">${c.name}</b>
+              <p class="help">${c.docs.map((d) => d.title.split("—")[0].split("(")[0].trim()).join(" • ")}</p>
+            </div>
+            <div class="ico" style="width:36px;height:36px;border-radius:10px;background:var(--elevated);display:grid;place-items:center;color:var(--cta);flex-shrink:0">${CAT_ICON[c.id]}</div>
+          </button>`;
+        }).join("")}
+        <button class="btn btn-primary" id="segNext" style="margin:12px 0 20px" ${segs.length ? "" : "disabled"}>Continuar para os documentos</button>
       </div>
     </section>`;
   }
@@ -536,11 +665,11 @@
   }
 
   function renderVerificacao() {
-    const t = state.accountType || "profissional";
+    const t = state.accountType || "colaborador";
     const msg = {
-      profissional: "Vamos conferir seus documentos e a validade da CNV, quando for o caso. Isso costuma levar até 24 horas.",
+      colaborador: "Vamos conferir seus documentos em cada segmento cadastrado. Isso costuma levar até 24 horas por função.",
       terceirizada: "Vamos conferir o CNPJ e a autorização da Polícia Federal. Isso costuma levar até 24 horas.",
-      contratante: "Vamos conferir o CNPJ da empresa. Isso costuma levar até 24 horas.",
+      contratante: "Vamos conferir o CNPJ da contratante. Isso costuma levar até 24 horas.",
     };
     return `<section class="screen ${anim()}">
       <div class="scroll pad" style="text-align:center;padding-top:calc(48px + var(--safe-t))">
@@ -557,9 +686,9 @@
 
   function renderDemo() {
     const cards = [
-      { id: "contratante", t: "Empresa Contratante", d: "Eventos Aurora — solicitar equipe, ver o próximo evento e pagar pelo app.", icon: ic.brief },
-      { id: "terceirizada", t: "Empresa de Segurança Terceirizada", d: "Sul Seguranças — publicar vigilância e gerir a equipe autorizada.", icon: ic.shield },
-      { id: "profissional", t: "Profissional", d: "Carlos Mendes, vigilante — vagas, check-in com foto e carteira Asael.", icon: ic.people },
+      { id: "contratante", t: "Contratante", d: "Eventos Aurora — montar a equipe completa do evento, com carrinho de funções e pagamento pelo app.", icon: ic.brief },
+      { id: "terceirizada", t: "Empresa Terceirizada", d: "Sul Seguranças — publicar vigilância com autorização da PF e completar a equipe.", icon: ic.shield },
+      { id: "colaborador", t: "Colaborador", d: "Carlos Mendes — segmentos, plantões, check-in com foto e simulador de ganhos na carteira Asael.", icon: ic.people },
     ];
     return `<section class="screen ${anim()}">
       ${topbar("Ver o app", "#/welcome")}
@@ -579,37 +708,63 @@
   }
 
   function renderHome() {
-    if (state.role === "profissional") return renderHomePro();
+    if (isColab()) return renderHomeColab();
     return renderHomeEmpresa();
+  }
+
+  function companyBenefits() {
+    const terc = state.role === "terceirizada";
+    return benefits(
+      terc
+        ? [
+            { icon: ic.shield, t: "Vigilância com autorização da PF", d: "Publique vagas de vigilante e complete a equipe com as demais funções no mesmo evento." },
+            { icon: ic.bag, t: "Um pedido, várias funções", d: "Adicione vigilantes, bombeiros, enfermagem e limpeza ao carrinho e confirme de uma vez." },
+            { icon: ic.lock, t: "Pagamento só no app", d: "Um único Pix cobre toda a equipe, com comprovante pronto para a contabilidade." },
+          ]
+        : [
+            { icon: ic.people, t: "Equipe completa em um só pedido", d: "No mesmo evento, solicite vigilantes, bombeiros, enfermagem e limpeza pelo carrinho." },
+            { icon: ic.lock, t: "Você paga o valor da hora. Só isso.", d: "Defina o valor por função, veja o total do evento e pague pelo app, com comprovante." },
+            { icon: ic.camera, t: "Check-in com foto e GPS", d: "Acompanhe a presença da equipe no local, com histórico e avaliação de duas vias." },
+          ]
+    );
   }
 
   function renderHomeEmpresa() {
     const u = USERS[state.role] || USERS.contratante;
     const ev = EVENTS[0];
     const isTerc = state.role === "terceirizada";
-    const cats = isTerc ? CATS : CATS; // contratante also can request vigilancia via partner
+    const people = evTotalPeople(ev);
     return `<section class="screen ${anim()}">
       ${protoBtn()}
       <div class="scroll has-nav">
         <div class="greet under-proto">
           ${avatar(u, "")}
           <div class="who">
-            <div class="hi">Olá</div>
+            <div class="hi">${u.roleLabel}</div>
             <h1>${u.name}</h1>
           </div>
-          <button class="icon-btn" aria-label="Notificações">${ic.bell}</button>
+          ${cartBtn()}
         </div>
         <div class="pad">
-          <button class="btn btn-primary" data-go="#/solicitar/cat" style="margin-top:8px">${ic.plus} Solicitar profissionais</button>
+          <button class="btn btn-primary" data-go="#/solicitar/evento" style="margin-top:4px">${ic.plus} Solicitar profissionais</button>
           ${
-            !isTerc
-              ? `<p class="help" style="margin:8px 0 0;text-align:center">Vagas de vigilância são atendidas por empresa autorizada pela Polícia Federal.</p>`
-              : `<p class="help" style="margin:8px 0 0;text-align:center">Sua empresa pode publicar vagas de vigilância e das demais categorias.</p>`
+            state.cart.length
+              ? `<button class="cart-mini" data-go="#/solicitar/carrinho">
+                  <div><b>Evento em montagem</b><span class="help">${state.event.title} • ${state.cart.length} função(ões) • ${cartPeople()} colaboradores</span></div>
+                  <span class="price">${brl(cartTotal())}</span>
+                </button>`
+              : ""
           }
+          ${
+            isTerc
+              ? `<p class="help" style="margin:8px 0 14px;text-align:center">Sua empresa pode publicar vagas de vigilância e das demais categorias.</p>`
+              : `<p class="help" style="margin:8px 0 14px;text-align:center">Vagas de vigilância são atendidas por empresa autorizada pela Polícia Federal.</p>`
+          }
+          ${companyBenefits()}
           <div class="section-h"><h2>Categorias</h2></div>
           <div class="cats">
             ${CATS.map(
-              (c) => `<button class="cat" data-go="#/solicitar/cat" data-setcat="${c.id}">
+              (c) => `<button class="cat" data-go="#/solicitar/evento" data-setcat="${c.id}">
                 ${CAT_ICON[c.id]}<span>${c.short}</span>
               </button>`
             ).join("")}
@@ -625,13 +780,14 @@
                 </div>
                 <span class="badge badge-ok">Equipe confirmada</span>
               </div>
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:4px">
-                <div>
-                  <div class="small muted" style="margin-bottom:6px">${ev.qty} profissionais confirmados</div>
-                  <div class="avatar-stack">
-                    ${TEAM.slice(0, 4).map((p) => avatar(p)).join("")}
-                    <div class="avatar">+20</div>
-                  </div>
+              <div class="small muted" style="margin:6px 0">${people} colaboradores • ${ev.functions.length} funções</div>
+              <div class="chips" style="margin-bottom:8px">
+                ${ev.functions.map((f) => `<span class="chip">${catBy(f.cat).short} · ${f.qty}</span>`).join("")}
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between">
+                <div class="avatar-stack">
+                  ${TEAM.slice(0, 4).map((p) => avatar(p)).join("")}
+                  <div class="avatar">+${Math.max(0, people - 4)}</div>
                 </div>
                 ${stars(4.9)}
               </div>
@@ -644,9 +800,38 @@
     </section>`;
   }
 
-  function renderHomePro() {
-    const u = USERS.profissional;
-    const open = SHIFTS.filter((s) => !state.checkins[s.id] || state.checkins[s.id] !== "done");
+  function colabBenefits() {
+    return benefits([
+      { icon: ic.wallet, t: "Veja o valor líquido antes de aceitar", d: "A empresa paga o valor da hora. A Asael desconta automaticamente a taxa de conexão." },
+      { icon: ic.people, t: "Mais segmentos, mais plantões", d: "Habilite vigilante, bombeiro, controle de acesso e outras funções com o cadastro de cada uma." },
+      { icon: ic.lock, t: "Receba só na conta Asael", d: "O Pix entra na sua chave exclusiva. Receber por fora leva ao banimento." },
+    ]);
+  }
+
+  function earningsSim(rate, cut, hours, days) {
+    const h = hours * days;
+    const gross = rate * h;
+    const fee = cut * h;
+    const net = gross - fee;
+    return `<div class="card sim">
+      <p class="small" style="margin-bottom:10px">A empresa paga ${brlH(rate)} e a Asael cobra ${brlH(cut)} pela conexão. O desconto é feito automaticamente.</p>
+      <div class="sim-controls">
+        <div class="field"><label>Horas do plantão</label>
+          <div class="qty" data-sim="simHours"><button type="button" data-delta="-1">−</button><div class="n">${state.simHours}</div><button type="button" data-delta="1">+</button></div>
+        </div>
+        <div class="field"><label>Dias</label>
+          <div class="qty" data-sim="simDays"><button type="button" data-delta="-1">−</button><div class="n">${state.simDays}</div><button type="button" data-delta="1">+</button></div>
+        </div>
+      </div>
+      <div class="summary-row"><span class="k">Valor bruto (${h}h)</span><span class="v">${brl(gross)}</span></div>
+      <div class="summary-row"><span class="k">Desconto Asael</span><span class="v">− ${brl(fee)}</span></div>
+      <div class="summary-row total"><span class="k">Você recebe</span><span class="v">${brl(net)}</span></div>
+    </div>`;
+  }
+
+  function renderHomeColab() {
+    const u = USERS.colaborador;
+    const list = visibleShifts(state.shiftFilter);
     return `<section class="screen ${anim()}">
       ${protoBtn()}
       <div class="scroll has-nav">
@@ -659,18 +844,24 @@
           <button class="icon-btn" aria-label="Notificações">${ic.bell}</button>
         </div>
         <div class="pad">
-          <div class="balance" style="padding:16px 18px;margin-bottom:18px">
+          <div class="balance" style="padding:16px 18px;margin-bottom:14px">
             <div class="lbl">Disponível na conta Asael</div>
             <div class="val" style="font-size:28px;margin-bottom:0">${brl(1760)}</div>
             <button class="btn btn-primary btn-sm" data-go="#/carteira" style="margin-top:12px;width:auto">Ver carteira</button>
           </div>
+          ${colabBenefits()}
+          <div class="section-h"><h2>Seus segmentos</h2><button data-go="#/segmentos">Gerenciar</button></div>
+          <div class="chips" style="margin-bottom:8px">
+            ${CATS.map((c) => `<button class="chip" data-go="#/segmentos">${c.short} · ${STATUS_LABEL[state.segments[c.id]]}</button>`).join("")}
+          </div>
+          <p class="help" style="margin-bottom:14px">As vagas abaixo são das funções já aprovadas. Complete o cadastro dos outros segmentos para ampliar as oportunidades.</p>
           <div class="chips" id="filterCats">
-            <button class="chip on" data-filter="all">Todas</button>
-            ${CATS.map((c) => `<button class="chip" data-filter="${c.id}">${c.short}</button>`).join("")}
+            <button class="chip ${state.shiftFilter === "all" ? "on" : ""}" data-filter="all">Aprovadas</button>
+            ${CATS.map((c) => `<button class="chip ${state.shiftFilter === c.id ? "on" : ""}" data-filter="${c.id}">${c.short}</button>`).join("")}
           </div>
           <div class="section-h"><h2>Vagas abertas em Joinville</h2></div>
           <div id="shiftList" style="display:grid;gap:10px">
-            ${SHIFTS.map((s) => shiftCard(s)).join("")}
+            ${shiftListHtml(list, state.shiftFilter)}
           </div>
         </div>
       </div>
@@ -679,9 +870,30 @@
     </section>`;
   }
 
+  function visibleShifts(filter) {
+    const approved = approvedSegs();
+    return SHIFTS.filter((s) => {
+      if (filter === "all") return approved.includes(s.cat);
+      return s.cat === filter;
+    });
+  }
+
+  function shiftListHtml(list, filter) {
+    if (filter !== "all" && state.segments[filter] !== "aprovado") {
+      const st = state.segments[filter];
+      const c = catBy(filter);
+      if (st === "em-analise") {
+        return `<div class="card muted">O segmento de ${c.name.toLowerCase()} ainda está em análise. Quando for aprovado, as vagas aparecem aqui.</div>`;
+      }
+      return `<div class="card"><p class="muted small" style="margin-bottom:10px">Complete o cadastro de ${c.name.toLowerCase()} para ver as vagas e ampliar suas oportunidades.</p><button class="btn btn-primary btn-sm" data-go="#/segmentos">Cadastrar segmento</button></div>`;
+    }
+    if (!list.length) return `<div class="card muted">Nenhuma vaga nesta função no momento.</div>`;
+    return list.map((s) => shiftCard(s)).join("");
+  }
+
   function shiftCard(s) {
-    const ev = EVENTS.find((e) => e.id === s.event);
-    const c = catBy(ev.cat);
+    const pay = shiftPay(s);
+    const ev = pay.ev;
     const accepted = state.accepted[s.id];
     const cin = state.checkins[s.id];
     let badge = `<span class="badge badge-info">${s.spots} vagas</span>`;
@@ -690,7 +902,7 @@
     return `<button class="shift-card" data-go="#/vaga/${s.id}">
       <div class="row">
         <div>
-          <div class="tiny" style="margin-bottom:2px">${c.short}</div>
+          <div class="tiny" style="margin-bottom:2px">${pay.c.short}</div>
           <h3>${ev.title}</h3>
         </div>
         ${badge}
@@ -700,14 +912,15 @@
         <span>${ic.clock} ${ev.when}</span>
         <span>${s.distance}</span>
       </div>
-      <div class="price">${brlH(s.net)} <span class="muted" style="font-size:12px;font-weight:500">líquido</span></div>
+      <div class="price">${brlH(pay.netHour)} <span class="muted" style="font-size:12px;font-weight:500">líquido</span></div>
     </button>`;
   }
 
   function renderVaga(id) {
     const s = SHIFTS.find((x) => x.id === id) || SHIFTS[0];
-    const ev = EVENTS.find((e) => e.id === s.event);
-    const c = catBy(ev.cat);
+    const pay = shiftPay(s);
+    const ev = pay.ev;
+    const c = pay.c;
     const accepted = state.accepted[s.id];
     const cin = state.checkins[s.id];
     let cta = `<button class="btn btn-primary" data-accept="${s.id}">Aceitar plantão</button>`;
@@ -726,16 +939,18 @@
               <span>${ic.pin} ${ev.address}</span>
             </div>
             <div class="shift-meta">
-              <span>${ic.clock} ${ev.date} • ${ev.start} às ${ev.end} (${ev.hours}h)</span>
+              <span>${ic.clock} ${formatISO(ev.date)} • ${ev.start} às ${ev.end} (${ev.hours}h)</span>
             </div>
           </div>
         </div>
+        <p class="small" style="margin-bottom:10px">A empresa paga ${brlH(pay.rate)} e a Asael cobra ${brlH(pay.cut)} pela conexão. O desconto é automático.</p>
         <div class="card">
-          <div class="summary-row"><span class="k">Valor da hora (empresa)</span><span class="v">${brlH(ev.rate)}</span></div>
-          <div class="summary-row"><span class="k">Taxa Asael</span><span class="v">− ${brlH(c.cut)}</span></div>
-          <div class="summary-row total"><span class="k">Você recebe</span><span class="v">${brlH(s.net)}</span></div>
-          <div class="summary-row"><span class="k">Plantão de ${ev.hours}h</span><span class="v">${brl(s.net * ev.hours)}</span></div>
+          <div class="summary-row"><span class="k">Valor bruto do plantão (${ev.hours}h)</span><span class="v">${brl(pay.gross)}</span></div>
+          <div class="summary-row"><span class="k">Desconto Asael</span><span class="v">− ${brl(pay.fee)}</span></div>
+          <div class="summary-row total"><span class="k">Você recebe</span><span class="v">${brl(pay.net)}</span></div>
         </div>
+        <div class="section-h"><h2>Simular outro período</h2></div>
+        ${earningsSim(pay.rate, pay.cut, state.simHours, state.simDays)}
         <div class="notice" style="margin-top:12px">${ic.lock} O pagamento entra só na sua conta Asael, dentro do app. Receber por outra chave ou conta leva ao banimento.</div>
         <div style="margin-top:18px">${cta}</div>
         ${accepted && !cin ? `<button class="btn btn-ghost" data-cancel="${s.id}">Cancelar aceite</button>` : ""}
@@ -775,139 +990,178 @@
   }
 
   function renderSolicitar(step) {
-    const r = state.request;
-    const c = catBy(r.cat);
-    const steps = ["cat", "dados", "valor", "resumo", "ok"];
-    const idx = Math.max(0, steps.indexOf(step));
+    const steps = ["evento", "cat", "item", "carrinho", "ok"];
     if (step === "ok") return renderSolicitarOk();
-    const p = pricing(c, r.rate, r.qty, r.hours, r.days);
+    const idx = Math.max(0, steps.indexOf(step));
+    const back =
+      step === "evento" ? "#/home" :
+      step === "cat" ? "#/solicitar/evento" :
+      step === "item" ? "#/solicitar/cat" :
+      "#/solicitar/item";
     return `<section class="screen ${anim()}">
-      ${topbar("Solicitar profissionais", idx === 0 ? "#/home" : `#/solicitar/${steps[idx - 1]}`)}
-      <div class="steps">${steps.slice(0, 4).map((_, i) => `<i class="${i <= idx ? "on" : ""}"></i>`).join("")}</div>
+      ${topbar(step === "carrinho" ? "Carrinho do evento" : "Solicitar profissionais", back, true)}
+      ${step !== "carrinho" ? `<div class="steps">${["evento", "cat", "item", "carrinho"].map((_, i) => `<i class="${i <= idx ? "on" : ""}"></i>`).join("")}</div>` : ""}
       <div class="scroll pad" style="padding-bottom:calc(24px + var(--safe-b))">
-        ${idx === 0 ? solicitarCat() : ""}
-        ${idx === 1 ? solicitarDados() : ""}
-        ${idx === 2 ? solicitarValor(p) : ""}
-        ${idx === 3 ? solicitarResumo(p) : ""}
+        ${step === "evento" || !step ? solicitarEvento() : ""}
+        ${step === "cat" ? solicitarCat() : ""}
+        ${step === "item" ? solicitarItem() : ""}
+        ${step === "carrinho" ? solicitarCarrinho() : ""}
       </div>
     </section>`;
   }
 
-  function solicitarCat() {
-    const r = state.request;
-    const isTerc = state.role === "terceirizada";
+  function solicitarEvento() {
+    const r = state.event;
     return `
-      <h1 style="font-size:22px;margin-bottom:6px">Qual profissional você precisa?</h1>
-      <p class="muted small" style="margin-bottom:16px">Escolha a função. O valor por hora e a taxa de adiantamento mudam conforme a categoria.</p>
-      ${CATS.map((c) => {
-        const locked = !isTerc && c.legal === "vigilancia";
-        const note = locked ? "Atendida por empresa autorizada pela Polícia Federal, parceira do Asael." : "";
-        return `<button class="account-card ${r.cat === c.id ? "selected" : ""}" data-setcat="${c.id}">
-          <div class="ico">${CAT_ICON[c.id]}</div>
-          <div>
-            <h3>${c.name}</h3>
-            <p>Sugerido ${brlH(c.rec)} • adiantamento ${brlH(c.fee)}</p>
-            ${note ? `<p style="margin-top:4px;color:var(--cta)">${note}</p>` : ""}
-          </div>
-        </button>`;
-      }).join("")}
-      <button class="btn btn-primary" data-go="#/solicitar/dados" style="margin-top:8px">Continuar</button>
-    `;
-  }
-
-  function solicitarDados() {
-    const r = state.request;
-    return `
-      <h1 style="font-size:22px;margin-bottom:16px">Dados do plantão</h1>
-      <div class="field"><label>Nome do evento ou local</label><input id="rq-title" value="${r.title}" /></div>
-      <div class="field"><label>Endereço em Joinville</label><input id="rq-address" value="${r.address}" /></div>
-      <div class="field"><label>Data de início</label><input id="rq-date" type="date" value="${r.date}" /></div>
+      <h1 style="font-size:22px;margin-bottom:6px">Dados do evento</h1>
+      <p class="muted small" style="margin-bottom:16px">Primeiro informe o evento. Depois você adiciona as funções ao carrinho — vigilantes, bombeiros, enfermagem, limpeza e outras.</p>
+      <div class="field"><label>Nome do evento ou local</label><input id="ev-title" value="${r.title}" /></div>
+      <div class="field"><label>Endereço em Joinville</label><input id="ev-address" value="${r.address}" /></div>
+      <div class="field"><label>Data de início</label><input id="ev-date" type="date" value="${r.date}" /></div>
       <div class="field"><label>Quantidade de dias</label>
-        <div class="qty" data-qty="days"><button type="button" data-delta="-1">−</button><div class="n">${r.days}</div><button type="button" data-delta="1">+</button></div>
+        <div class="qty" data-ev="days"><button type="button" data-delta="-1">−</button><div class="n">${r.days}</div><button type="button" data-delta="1">+</button></div>
       </div>
-      <div class="field"><label>Profissionais</label>
-        <div class="qty" data-qty="qty"><button type="button" data-delta="-1">−</button><div class="n">${r.qty}</div><button type="button" data-delta="1">+</button></div>
-      </div>
-      <div class="field"><label>Turno</label>
-        <select id="rq-shift">
+      <div class="field"><label>Turno padrão (12h)</label>
+        <select id="ev-shift">
           <option value="18:00-06:00" ${r.start === "18:00" ? "selected" : ""}>Noturno 12h — 18h às 06h</option>
           <option value="08:00-20:00" ${r.start === "08:00" ? "selected" : ""}>Diurno 12h — 08h às 20h</option>
           <option value="10:00-22:00" ${r.start === "10:00" ? "selected" : ""}>Comércio 12h — 10h às 22h</option>
           <option value="22:00-10:00" ${r.start === "22:00" ? "selected" : ""}>Balada 12h — 22h às 10h</option>
         </select>
       </div>
-      <p class="notice">O plantão padrão do Asael é de 12 horas. O adiantamento é cobrado por hora de cada profissional, conforme o número de dias.</p>
-      <button class="btn btn-primary" id="dadosNext" style="margin-top:16px">Continuar</button>
+      <p class="notice">O plantão padrão do Asael é de 12 horas. Você poderá ajustar turno e valor em cada função do carrinho.</p>
+      <button class="btn btn-primary" id="eventoNext" style="margin-top:16px">Escolher funções</button>
     `;
   }
 
-  function solicitarValor(p) {
-    const r = state.request;
+  function solicitarCat() {
+    const r = state.item;
+    const isTerc = state.role === "terceirizada";
+    const inCart = (id) => state.cart.some((i) => i.cat === id);
+    return `
+      <h1 style="font-size:22px;margin-bottom:6px">Qual função você precisa?</h1>
+      <p class="muted small" style="margin-bottom:16px">Adicione uma função por vez ao mesmo evento. O valor sugerido é o que a contratante paga por hora.</p>
+      ${CATS.map((c) => {
+        const note = !isTerc && c.legal === "vigilancia" ? "Atendida por empresa autorizada pela Polícia Federal, parceira do Asael." : "";
+        return `<button class="account-card ${r.cat === c.id ? "selected" : ""}" data-setcat="${c.id}">
+          <div class="ico">${CAT_ICON[c.id]}</div>
+          <div>
+            <h3>${c.name}${inCart(c.id) ? " · no carrinho" : ""}</h3>
+            <p>Valor sugerido ${brlH(c.rec)}</p>
+            ${note ? `<p style="margin-top:4px;color:var(--cta)">${note}</p>` : ""}
+          </div>
+        </button>`;
+      }).join("")}
+      <button class="btn btn-primary" data-go="#/solicitar/item" style="margin-top:8px">Continuar</button>
+      ${state.cart.length ? `<button class="btn btn-ghost" data-go="#/solicitar/carrinho">Ir ao carrinho (${state.cart.length})</button>` : ""}
+    `;
+  }
+
+  function solicitarItem() {
+    const it = state.item;
+    const c = catBy(it.cat);
+    const level = rateLevel(c, it.rate);
+    const sub = lineTotal(it);
     let box = "";
-    if (p.level === "block") box = `<div class="err-box">${ic.alert} ${warningCopy(p)}</div>`;
-    else if (p.level === "warn")
-      box = `<div class="warn-box">${ic.alert} ${warningCopy(p)}
+    if (level === "block") box = `<div class="err-box">${ic.alert} ${warningCopy(c, it.rate)}</div>`;
+    else if (level === "warn")
+      box = `<div class="warn-box">${ic.alert} ${warningCopy(c, it.rate)}
         <label class="check" style="margin-top:10px;color:inherit">
-          <input type="checkbox" id="aceiteBaixo" ${r.acceptLow ? "checked" : ""} />
+          <input type="checkbox" id="aceiteBaixo" ${it.acceptLow ? "checked" : ""} />
           <span>Sim, desejo continuar com este valor.</span>
         </label>
       </div>`;
-    else box = `<div class="ok-box">Valor dentro do recomendado de ${brlH(p.c.rec)}. Os profissionais veem ${brlH(p.netHour)} líquidos.</div>`;
-    const canNext = p.level === "ok" || (p.level === "warn" && r.acceptLow);
+    else box = `<div class="ok-box">Valor dentro do recomendado de ${brlH(c.rec)}.</div>`;
+    const canAdd = level === "ok" || (level === "warn" && it.acceptLow);
     return `
-      <h1 style="font-size:22px;margin-bottom:6px">Valor por hora</h1>
-      <p class="muted small" style="margin-bottom:16px">${p.c.name}. Mínimo ${brlH(p.c.min)} • recomendado ${brlH(p.c.rec)}.</p>
-      <div class="rate-box">
-        <span class="prefix">R$</span>
-        <input class="rate-input ${p.level === "block" ? "invalid" : p.level === "warn" ? "warn" : ""}" id="rq-rate" inputmode="decimal" value="${formatRateInput(r.rate)}" />
+      <h1 style="font-size:22px;margin-bottom:6px">${c.name}</h1>
+      <p class="muted small" style="margin-bottom:16px">Mínimo ${brlH(c.min)} • recomendado ${brlH(c.rec)}. Informe quantidade, turno e o valor por hora.</p>
+      <div class="field"><label>Quantidade de colaboradores</label>
+        <div class="qty" data-item="qty"><button type="button" data-delta="-1">−</button><div class="n">${it.qty}</div><button type="button" data-delta="1">+</button></div>
+      </div>
+      <div class="field"><label>Dias desta função</label>
+        <div class="qty" data-item="days"><button type="button" data-delta="-1">−</button><div class="n">${it.days}</div><button type="button" data-delta="1">+</button></div>
+      </div>
+      <div class="field"><label>Turno</label>
+        <select id="it-shift">
+          <option value="18:00-06:00" ${it.start === "18:00" ? "selected" : ""}>Noturno 12h — 18h às 06h</option>
+          <option value="08:00-20:00" ${it.start === "08:00" ? "selected" : ""}>Diurno 12h — 08h às 20h</option>
+          <option value="10:00-22:00" ${it.start === "10:00" ? "selected" : ""}>Comércio 12h — 10h às 22h</option>
+          <option value="22:00-10:00" ${it.start === "22:00" ? "selected" : ""}>Balada 12h — 22h às 10h</option>
+        </select>
+      </div>
+      <div class="field"><label>Valor por hora</label>
+        <div class="rate-box">
+          <span class="prefix">R$</span>
+          <input class="rate-input ${level === "block" ? "invalid" : level === "warn" ? "warn" : ""}" id="rq-rate" inputmode="decimal" value="${formatRateInput(it.rate)}" />
+        </div>
       </div>
       ${box}
       <div class="card" style="margin-top:16px">
-        <div class="summary-row"><span class="k">Líquido do profissional</span><span class="v">${brlH(p.netHour)}</span></div>
-        <div class="summary-row"><span class="k">Taxa Asael (por hora)</span><span class="v">${brlH(p.c.cut)}</span></div>
-        <div class="summary-row"><span class="k">Adiantamento para solicitar</span><span class="v">${brlH(p.feeHour)}</span></div>
+        <div class="summary-row"><span class="k">${it.qty} × ${it.hours}h × ${it.days} dia(s)</span><span class="v">${brlH(it.rate)}</span></div>
+        <div class="summary-row total"><span class="k">Subtotal desta função</span><span class="v">${brl(sub)}</span></div>
       </div>
-      <button class="btn btn-primary" data-go="#/solicitar/resumo" style="margin-top:16px" ${canNext ? "" : "disabled"} id="valorNext">Continuar</button>
+      <button class="btn btn-primary" id="addCart" style="margin-top:16px" ${canAdd ? "" : "disabled"}>Adicionar ao evento</button>
     `;
   }
 
-  function solicitarResumo(p) {
-    const r = state.request;
+  function solicitarCarrinho() {
+    const ev = state.event;
+    if (!state.cart.length) {
+      return `
+        <h1 style="font-size:22px;margin-bottom:8px">Carrinho vazio</h1>
+        <p class="muted small" style="margin-bottom:16px">Adicione pelo menos uma função para ${ev.title}.</p>
+        <button class="btn btn-primary" data-go="#/solicitar/cat">Adicionar função</button>
+      `;
+    }
     return `
-      <h1 style="font-size:22px;margin-bottom:6px">Confira o pedido</h1>
-      <p class="muted small" style="margin-bottom:16px">${r.title} • plantão de ${p.hours}h</p>
+      <p class="tiny">Evento</p>
+      <h1 style="font-size:22px;margin-bottom:4px">${ev.title}</h1>
+      <p class="muted small" style="margin-bottom:16px">${ev.address}<br/>${formatISO(ev.date)} • ${ev.start} às ${ev.end}</p>
+      ${state.cart
+        .map((i) => {
+          const c = catBy(i.cat);
+          return `<div class="cart-line">
+            <div class="top">
+              <div>
+                <h3>${c.name}</h3>
+                <div class="shift-meta" style="margin-top:4px">
+                  <span>${i.qty} colaborador(es)</span>
+                  <span>${i.start}–${i.end}</span>
+                  <span>${i.days} dia(s)</span>
+                </div>
+              </div>
+              <button class="icon-btn" data-removecart="${i.id}" aria-label="Remover">${ic.trash}</button>
+            </div>
+            <div class="summary-row" style="margin-top:8px;border-bottom:0;padding-bottom:0">
+              <span class="k">${brlH(i.rate)}</span>
+              <span class="v">${brl(lineTotal(i))}</span>
+            </div>
+          </div>`;
+        })
+        .join("")}
+      <button class="btn btn-secondary" data-go="#/solicitar/cat" style="margin-bottom:16px">${ic.plus} Adicionar outra função</button>
       <div class="card">
-        <div class="summary-row"><span class="k">Função</span><span class="v">${p.c.name}</span></div>
-        <div class="summary-row"><span class="k">Profissionais</span><span class="v">${p.qty}</span></div>
-        <div class="summary-row"><span class="k">Dias</span><span class="v">${p.days}</span></div>
-        <div class="summary-row"><span class="k">Turno</span><span class="v">${r.start} às ${r.end}</span></div>
-        <div class="summary-row"><span class="k">Local</span><span class="v">${r.address}</span></div>
-        <div class="summary-row"><span class="k">Valor da hora</span><span class="v ${p.level === "warn" ? "price yellow" : ""}">${brlH(p.r)}</span></div>
-        <div class="summary-row"><span class="k">Líquido do profissional</span><span class="v">${brlH(p.netHour)}</span></div>
-        <div class="summary-row"><span class="k">Total do evento (${p.peopleHours} horas)</span><span class="v">${brl(p.gross)}</span></div>
-        <div class="summary-row total"><span class="k">Adiantamento agora</span><span class="v">${brl(p.upfront)}</span></div>
-        <div class="summary-row"><span class="k">Restante no término</span><span class="v">${brl(p.rest)}</span></div>
+        <div class="summary-row"><span class="k">Funções</span><span class="v">${state.cart.length}</span></div>
+        <div class="summary-row"><span class="k">Colaboradores</span><span class="v">${cartPeople()}</span></div>
+        <div class="summary-row total"><span class="k">Total do evento</span><span class="v">${brl(cartTotal())}</span></div>
       </div>
-      <div class="notice" style="margin-top:12px">
-        O adiantamento de ${brlH(p.feeHour)} por profissional reserva a equipe. O restante é pago só pelas chaves Pix Asael, dentro do app, no término do evento. Pagamento por fora = banimento da empresa e do profissional.
-      </div>
-      <button class="btn btn-primary" id="confirmarPedido" style="margin-top:16px">Pagar adiantamento de ${brl(p.upfront)}</button>
+      <div class="notice" style="margin-top:12px">O pagamento da equipe é feito apenas dentro do app. Pagamento por fora resulta no banimento da empresa e do colaborador.</div>
+      <button class="btn btn-primary" id="confirmarPedido" style="margin-top:16px">Confirmar evento • ${brl(cartTotal())}</button>
       <p class="help" style="text-align:center;margin-top:10px">Protótipo: nenhum pagamento real é feito.</p>
     `;
   }
 
   function renderSolicitarOk() {
-    const p = state.lastRequest;
+    const ev = state.lastEvent || state.event;
+    const n = ev.functions ? ev.functions.reduce((s, f) => s + f.qty, 0) : cartPeople();
+    const total = ev.total != null ? ev.total : cartTotal();
     return `<section class="screen ${anim()}">
       <div class="scroll pad" style="text-align:center;padding-top:calc(40px + var(--safe-t))">
         <div class="success-mark">${ic.check}</div>
         <h1 style="font-size:26px;margin-bottom:8px">Pedido enviado</h1>
-        <p class="muted" style="line-height:1.5">${
-          p
-            ? `Reservamos ${p.qty} profissionais de ${p.c.short.toLowerCase()} para ${state.request.title}. O adiantamento de ${brl(p.upfront)} foi simulado.`
-            : "Seu pedido foi registrado neste protótipo."
-        }</p>
-        <div class="notice" style="text-align:left;margin:20px 0">Os profissionais vão aparecer no plantão conforme aceitarem a vaga. O pagamento do restante entra no app, no término do evento.</div>
+        <p class="muted" style="line-height:1.5">Reservamos ${n} colaborador(es) em ${ev.functions ? ev.functions.length : 0} função(ões) para ${ev.title}. Total simulado: ${brl(total)}.</p>
+        <div class="notice" style="text-align:left;margin:20px 0">Os colaboradores vão aparecer no plantão conforme aceitarem a vaga. O pagamento da equipe é feito no app, no término do evento.</div>
         <button class="btn btn-primary" data-go="#/home">Ir para o início</button>
         <button class="btn btn-ghost" data-go="#/plantoes">Ver plantões</button>
       </div>
@@ -915,48 +1169,38 @@
   }
 
   function renderPlantoes() {
-    const isPro = state.role === "profissional";
-    if (isPro) {
-      const mine = SHIFTS.filter((s) => state.accepted[s.id] || state.checkins[s.id]);
+    if (isColab()) {
+      const mine = SHIFTS.filter((s) => (state.accepted[s.id] || state.checkins[s.id]) && approvedSegs().includes(s.cat));
       return `<section class="screen ${anim()}">
         ${protoBtn()}
         <div class="scroll has-nav pad" style="padding-top:16px">
           <h1 style="font-size:24px;margin-bottom:6px">Meus plantões</h1>
-          <p class="muted small" style="margin-bottom:16px">Aceitos, em andamento e concluídos.</p>
+          <p class="muted small" style="margin-bottom:16px">Aceitos, em andamento e concluídos, nas funções que você já tem aprovadas.</p>
+          ${colabBenefits()}
           ${
             mine.length
               ? `<div style="display:grid;gap:10px">${mine.map((s) => shiftCard(s)).join("")}</div>`
               : `<div class="card muted">Você ainda não aceitou nenhum plantão. Veja as vagas abertas no início.</div>`
           }
-          <div class="section-h"><h2>Histórico recente</h2></div>
-          <div class="card">
-            <div class="tx"><div class="ico">${ic.check}</div><div class="mid"><b>Show no Expoville</b><span class="help">8 nov • concluído • ${brl(216)}</span></div></div>
-            <div class="tx"><div class="ico">${ic.check}</div><div class="mid"><b>Congresso no Centreventos</b><span class="help">1 nov • concluído • ${brl(216)}</span></div></div>
-          </div>
         </div>
         ${tabbar("plantoes")}
       </section>`;
     }
-    const list = EVENTS;
     return `<section class="screen ${anim()}">
       ${protoBtn()}
       <div class="scroll has-nav pad" style="padding-top:16px">
-        <h1 style="font-size:24px;margin-bottom:16px">Plantões</h1>
+        <h1 style="font-size:24px;margin-bottom:6px">Plantões</h1>
+        <p class="muted small" style="margin-bottom:14px">Acompanhe a equipe de cada evento em um só lugar, com todas as funções juntas.</p>
         <div style="display:grid;gap:12px">
-          ${list
-            .map((ev) => {
-              const c = catBy(ev.cat);
-              const st =
-                ev.status === "confirmado"
-                  ? `<span class="badge badge-ok">Equipe confirmada</span>`
-                  : `<span class="badge badge-info">Aberto</span>`;
-              return `<button class="shift-card" data-go="#/evento/${ev.id}">
-                <div class="row"><div><div class="tiny">${c.short}</div><h3>${ev.title}</h3></div>${st}</div>
-                <div class="shift-meta"><span>${ic.pin} ${ev.place}</span><span>${ic.clock} ${ev.when}</span><span>${ic.people} ${ev.qty}</span></div>
-                <div class="price">${brlH(ev.rate)}</div>
-              </button>`;
-            })
-            .join("")}
+          ${EVENTS.map((ev) => {
+            const st = ev.status === "confirmado" ? `<span class="badge badge-ok">Equipe confirmada</span>` : `<span class="badge badge-info">Aberto</span>`;
+            return `<button class="shift-card" data-go="#/evento/${ev.id}">
+              <div class="row"><div><h3>${ev.title}</h3></div>${st}</div>
+              <div class="shift-meta"><span>${ic.pin} ${ev.place}</span><span>${ic.clock} ${ev.when}</span><span>${ic.people} ${evTotalPeople(ev)}</span></div>
+              <div class="small muted">${ev.functions.map((f) => `${catBy(f.cat).short} · ${f.qty}`).join("  •  ")}</div>
+              <div class="price">${brl(evCompanyTotal(ev))}</div>
+            </button>`;
+          }).join("")}
         </div>
       </div>
       ${tabbar("plantoes")}
@@ -965,8 +1209,7 @@
 
   function renderEvento(id) {
     const ev = EVENTS.find((e) => e.id === id) || EVENTS[0];
-    const c = catBy(ev.cat);
-    const p = pricing(c, ev.rate, ev.qty, ev.hours, ev.days);
+    const total = evCompanyTotal(ev);
     return `<section class="screen ${anim()}">
       ${topbar("Plantão", "#/plantoes")}
       <div class="scroll pad" style="padding-bottom:calc(24px + var(--safe-b))">
@@ -980,11 +1223,14 @@
           </div>
         </div>
         <div class="card" style="margin-bottom:12px">
-          <div class="summary-row"><span class="k">Função</span><span class="v">${c.name}</span></div>
-          <div class="summary-row"><span class="k">Equipe</span><span class="v">${ev.qty} profissionais</span></div>
-          <div class="summary-row"><span class="k">Valor da hora</span><span class="v">${brlH(ev.rate)}</span></div>
-          <div class="summary-row"><span class="k">Adiantamento pago</span><span class="v">${brl(p.upfront)}</span></div>
-          <div class="summary-row total"><span class="k">Restante no término</span><span class="v">${brl(p.rest)}</span></div>
+          ${ev.functions
+            .map((f) => {
+              const c = catBy(f.cat);
+              const sub = f.rate * ev.hours * ev.days * f.qty;
+              return `<div class="summary-row"><span class="k">${c.short} • ${f.qty} × ${brlH(f.rate)}</span><span class="v">${brl(sub)}</span></div>`;
+            })
+            .join("")}
+          <div class="summary-row total"><span class="k">Total do evento</span><span class="v">${brl(total)}</span></div>
         </div>
         <div class="section-h"><h2>Equipe</h2></div>
         ${TEAM.slice(0, ev.status === "confirmado" ? 6 : 3)
@@ -995,11 +1241,11 @@
           </div>`
           )
           .join("")}
-        <p class="help" style="margin-top:8px">${ev.status === "confirmado" ? `+${Math.max(0, ev.qty - 6)} profissionais confirmados` : "Aguardando mais aceites"}</p>
+        <p class="help" style="margin-top:8px">${ev.status === "confirmado" ? `${evTotalPeople(ev)} colaboradores confirmados` : "Aguardando mais aceites"}</p>
         ${
-          state.role !== "profissional"
-            ? `<button class="btn btn-primary" style="margin-top:16px" data-payresto="${ev.id}">Pagar restante no app • ${brl(p.rest)}</button>
-               <p class="help" style="text-align:center;margin-top:8px">O pagamento é feito de uma vez, para as chaves Asael de toda a equipe.</p>`
+          isCompany()
+            ? `<button class="btn btn-primary" style="margin-top:16px" data-payresto="${ev.id}">Pagar equipe no app • ${brl(total)}</button>
+               <p class="help" style="text-align:center;margin-top:8px">O pagamento é feito de uma vez, para as contas Asael de toda a equipe.</p>`
             : ""
         }
       </div>
@@ -1008,10 +1254,12 @@
   }
 
   function renderCarteira() {
+    const vig = catBy("vigilancia");
     return `<section class="screen ${anim()}">
       ${protoBtn()}
       <div class="scroll has-nav pad" style="padding-top:16px">
-        <h1 style="font-size:24px;margin-bottom:14px">Carteira Asael</h1>
+        <h1 style="font-size:24px;margin-bottom:8px">Carteira Asael</h1>
+        <p class="muted small" style="margin-bottom:14px">Seu rendimento líquido, com a taxa de conexão já descontada automaticamente.</p>
         <div class="balance">
           <div class="lbl">Saldo disponível</div>
           <div class="val">${brl(1760)}</div>
@@ -1021,6 +1269,8 @@
           <div class="summary-row"><span class="k">A receber (plantões em aberto)</span><span class="v">${brl(216)}</span></div>
           <div class="summary-row"><span class="k">Chave Pix Asael</span><span class="v">carlos.mendes@asael.app</span></div>
         </div>
+        <div class="section-h"><h2>Simulador de ganhos</h2></div>
+        ${earningsSim(vig.min, vig.cut, state.simHours, state.simDays)}
         <div class="notice" style="margin-top:12px">Esta chave é exclusiva do Asael. Receber o plantão em outra conta leva ao banimento.</div>
         <div class="section-h"><h2>Movimentações</h2></div>
         <div class="card">
@@ -1040,28 +1290,33 @@
 
   function renderPagamentos() {
     const ev = EVENTS[0];
-    const p = pricing(ev.cat, ev.rate, ev.qty, ev.hours, ev.days);
+    const total = evCompanyTotal(ev);
     return `<section class="screen ${anim()}">
       ${protoBtn()}
       <div class="scroll has-nav pad" style="padding-top:16px">
         <h1 style="font-size:24px;margin-bottom:6px">Pagamentos</h1>
-        <p class="muted small" style="margin-bottom:16px">Adiantamentos e restantes, sempre pelas contas Asael.</p>
+        <p class="muted small" style="margin-bottom:14px">Um único pagamento cobre toda a equipe do evento, só pelas contas Asael.</p>
+        ${benefits([
+          { icon: ic.lock, t: "Tudo no app, com comprovante", d: "Pague a equipe de uma vez e tenha o registro pronto para a contabilidade." },
+          { icon: ic.card, t: "Sem pagamento por fora", d: "Quem pagar fora do aplicativo é banido." },
+        ])}
         <div class="balance">
-          <div class="lbl">Próximo pagamento (término do Show no Expoville)</div>
-          <div class="val" style="font-size:28px">${brl(p.rest)}</div>
+          <div class="lbl">Próximo pagamento • ${ev.title}</div>
+          <div class="val" style="font-size:28px">${brl(total)}</div>
           <button class="btn btn-primary" data-payresto="expoville">Pagar equipe no app</button>
         </div>
         <div class="card" style="margin-top:14px">
+          ${ev.functions
+            .map((f) => `<div class="summary-row"><span class="k">${catBy(f.cat).short} • ${f.qty} × ${brlH(f.rate)}</span><span class="v">${brl(f.rate * ev.hours * ev.days * f.qty)}</span></div>`)
+            .join("")}
+          <div class="summary-row total"><span class="k">Total</span><span class="v">${brl(total)}</span></div>
+        </div>
+        <div class="card" style="margin-top:12px">
           <div class="tx">
             <div class="ico">${ic.check}</div>
-            <div class="mid"><b>Adiantamento • Show no Expoville</b><span class="help">Pago em 10 nov • ${brl(p.upfront)}</span></div>
-          </div>
-          <div class="tx">
-            <div class="ico">${ic.check}</div>
-            <div class="mid"><b>Adiantamento • Black Friday Mueller</b><span class="help">Pago em 20 nov • ${brl(1 * 8 * 12)}</span></div>
+            <div class="mid"><b>Pagamento • Black Friday Mueller</b><span class="help">20 nov • ${brl(16 * 12 * 8)}</span></div>
           </div>
         </div>
-        <div class="notice" style="margin-top:12px">Um único botão paga todos os profissionais do plantão. Quem pagar por fora é banido do aplicativo.</div>
       </div>
       ${tabbar("pagamentos")}
       ${toastEl()}
@@ -1072,12 +1327,11 @@
     const s = SHIFTS.find((x) => x.id === id) || SHIFTS[0];
     const ev = EVENTS.find((e) => e.id === s.event);
     const n = state.rating;
-    const isPro = state.role === "profissional";
     return `<section class="screen ${anim()}">
-      ${topbar("Avaliação", isPro ? `#/vaga/${s.id}` : "#/evento/" + ev.id)}
+      ${topbar("Avaliação", isColab() ? `#/vaga/${s.id}` : "#/evento/" + ev.id)}
       <div class="scroll pad" style="text-align:center;padding-bottom:calc(24px + var(--safe-b))">
         <p class="kicker" style="margin-top:8px">Avaliação de duas vias</p>
-        <h1 style="font-size:22px;margin-bottom:8px">${isPro ? "Como foi a empresa neste plantão?" : "Como foi a equipe?"}</h1>
+        <h1 style="font-size:22px;margin-bottom:8px">${isColab() ? "Como foi a empresa neste plantão?" : "Como foi a equipe?"}</h1>
         <p class="muted small" style="margin-bottom:20px">${ev.title} • ${ev.place}</p>
         <div class="star-pick" id="starPick">
           ${[1, 2, 3, 4, 5].map((i) => `<button type="button" data-star="${i}" class="${i <= n ? "on" : ""}">★</button>`).join("")}
@@ -1093,7 +1347,6 @@
 
   function renderPerfil() {
     const u = USERS[state.role] || USERS.contratante;
-    const isPro = state.role === "profissional";
     return `<section class="screen ${anim()}">
       ${protoBtn()}
       <div class="scroll has-nav" style="padding-top:16px;text-align:center">
@@ -1101,9 +1354,17 @@
           ${avatar(u, "lg")}
           <h1 style="font-size:22px;margin:10px 0 2px">${u.name}</h1>
           <p class="muted small">${u.roleLabel} • ${u.city}</p>
-          ${isPro ? `<div style="margin-top:6px">${stars(u.stars)}</div>` : ""}
+          ${isColab() ? `<div style="margin-top:6px">${stars(u.stars)}</div>` : ""}
         </div>
-        <div class="pad profile-list" style="text-align:left;margin-top:18px">
+        <div class="pad" style="text-align:left;margin-top:8px">
+          ${
+            isColab()
+              ? colabBenefits()
+              : companyBenefits()
+          }
+        </div>
+        <div class="pad profile-list" style="text-align:left;margin-top:8px">
+          ${isColab() ? `<button type="button" data-go="#/segmentos"><span>Meus segmentos</span>${ic.chevron}</button>` : ""}
           <button type="button" data-go="#/demo"><span>Trocar perfil do protótipo</span>${ic.chevron}</button>
           <button type="button" id="toggleLight"><span>Modo claro (melhor no sol)</span><span class="switch ${state.light ? "on" : ""}"><i></i></span></button>
           <button type="button"><span>Termos de uso</span>${ic.chevron}</button>
@@ -1117,6 +1378,38 @@
     </section>`;
   }
 
+  function renderSegmentos() {
+    return `<section class="screen ${anim()}">
+      ${topbar("Meus segmentos", "#/perfil")}
+      <div class="scroll pad" style="padding-bottom:calc(24px + var(--safe-b))">
+        <h1 style="font-size:22px;margin-bottom:6px">Habilite mais funções</h1>
+        <p class="muted small" style="margin-bottom:16px">O mesmo colaborador pode atuar em vários segmentos, desde que faça o cadastro de cada um. Mais segmentos, mais oportunidades.</p>
+        ${CATS.map((c) => {
+          const st = state.segments[c.id];
+          return `<div class="cart-line">
+            <div class="top">
+              <div style="display:flex;gap:10px;align-items:center">
+                <div class="ico" style="width:40px;height:40px;border-radius:12px;background:var(--elevated);display:grid;place-items:center;color:var(--cta)">${CAT_ICON[c.id]}</div>
+                <div>
+                  <h3>${c.name}</h3>
+                  <div style="margin-top:4px">${statusBadge(st)}</div>
+                </div>
+              </div>
+            </div>
+            ${
+              st === "aprovado"
+                ? `<p class="help" style="margin-top:8px">Você já pode aceitar plantões desta função.</p>`
+                : st === "em-analise"
+                ? `<p class="help" style="margin-top:8px">Documentos em conferência. Isso costuma levar até 24 horas.</p>`
+                : `<div style="margin-top:10px">${c.docs.map((d) => uploadBtn(d.id, d.title, d.sub)).join("")}
+                   <button class="btn btn-primary btn-sm" data-sendseg="${c.id}" style="margin-top:6px;width:100%">Enviar cadastro deste segmento</button></div>`
+            }
+          </div>`;
+        }).join("")}
+      </div>
+    </section>`;
+  }
+
   /* ------------ events ------------ */
   function bind(p) {
     view.querySelectorAll("[data-go]").forEach((el) => {
@@ -1125,10 +1418,14 @@
         const dir = el.getAttribute("data-dir") || "left";
         const cat = el.getAttribute("data-setcat");
         if (cat) {
-          state.request.cat = cat;
+          state.item.cat = cat;
           const c = catBy(cat);
-          state.request.rate = c.rec;
-          state.request.acceptLow = false;
+          state.item.rate = c.rec;
+          state.item.acceptLow = false;
+          state.item.days = state.event.days;
+          state.item.start = state.event.start;
+          state.item.end = state.event.end;
+          state.item.hours = state.event.hours;
         }
         go(el.getAttribute("data-go"), { dir });
       });
@@ -1136,16 +1433,18 @@
 
     if (p.name === "onboarding") bindOnboard();
     if (p.name === "tipo") bindTipo();
-    if (p.name === "cadastro") bindCadastro();
+    if (p.name === "cadastro") bindCadastro(p.id);
     if (p.name === "demo") bindDemo();
-    if (p.name === "solicitar") bindSolicitar(p.id || "cat");
+    if (p.name === "solicitar") bindSolicitar(p.id || "evento");
     if (p.name === "vaga") bindVaga();
     if (p.name === "checkin") bindCheckin(p.id);
-    if (p.name === "home" && state.role === "profissional") bindHomePro();
+    if (p.name === "home" && isColab()) bindHomeColab();
     if (p.name === "carteira") bindCarteira();
     if (p.name === "avaliar") bindAvaliar();
     if (p.name === "perfil") bindPerfil();
     if (p.name === "evento" || p.name === "pagamentos") bindPay();
+    if (p.name === "vaga" || p.name === "carteira") bindSim();
+    if (p.name === "segmentos") bindSegmentos();
     if (p.name === "splash") {
       clearTimeout(window.__asaelSplash);
       window.__asaelSplash = setTimeout(() => {
@@ -1162,7 +1461,6 @@
     const total = track.children.length;
     const update = () => {
       const i = Math.round(track.scrollLeft / track.clientWidth);
-      state.onboardIndex = i;
       [...dots.children].forEach((d, idx) => d.classList.toggle("on", idx === i));
       btn.textContent = i >= total - 1 ? "Começar" : "Continuar";
     };
@@ -1185,7 +1483,18 @@
     if (btn) btn.addEventListener("click", () => go("#/cadastro"));
   }
 
-  function bindCadastro() {
+  function bindCadastro(step) {
+    view.querySelectorAll("[data-toggleseg]").forEach((el) => {
+      el.addEventListener("click", () => {
+        const id = el.getAttribute("data-toggleseg");
+        if (state.signupSegs.includes(id)) state.signupSegs = state.signupSegs.filter((s) => s !== id);
+        else state.signupSegs = [...state.signupSegs, id];
+        render();
+      });
+    });
+    const segNext = document.getElementById("segNext");
+    if (segNext) segNext.addEventListener("click", () => go("#/cadastro/docs"));
+
     const aceite = document.getElementById("aceite");
     const btn = document.getElementById("enviarCadastro");
     const sync = () => {
@@ -1196,21 +1505,21 @@
     view.querySelectorAll("[data-upload]").forEach((el) => {
       el.addEventListener("click", () => {
         const id = el.getAttribute("data-upload");
-        const names = {
-          cnv: "CNV_CarlosMendes_2027.pdf",
-          reciclagem: "Reciclagem_2026.pdf",
-          antecedentes: "Antecedentes_SC.pdf",
-          selfie: "selfie_verificacao.jpg",
-          pf: "Autorizacao_PF_SulSegurancas.pdf",
-          contrato: "Contrato_social.pdf",
-        };
-        state.uploads[id] = names[id] || "arquivo.pdf";
+        state.uploads[id] = "arquivo_enviado.pdf";
         render();
       });
     });
     if (btn)
       btn.addEventListener("click", () => {
         if (state.accountType) state.role = state.accountType;
+        if (state.accountType === "colaborador") {
+          const next = { ...demoSegments() };
+          CATS.forEach((c) => {
+            if (state.signupSegs.includes(c.id)) next[c.id] = "em-analise";
+            else next[c.id] = "pendente";
+          });
+          state.segments = next;
+        }
         go("#/verificacao");
       });
   }
@@ -1219,50 +1528,78 @@
     view.querySelectorAll("[data-role]").forEach((el) => {
       el.addEventListener("click", () => {
         state.role = el.getAttribute("data-role");
+        state.toast = null;
+        if (state.role === "colaborador") state.segments = demoSegments();
         go("#/home");
       });
     });
+  }
+
+  function saveEventFields() {
+    const title = document.getElementById("ev-title");
+    const address = document.getElementById("ev-address");
+    const date = document.getElementById("ev-date");
+    const shift = document.getElementById("ev-shift");
+    if (title) state.event.title = title.value;
+    if (address) state.event.address = address.value;
+    if (date) state.event.date = date.value;
+    if (shift) {
+      const [a, b] = shift.value.split("-");
+      state.event.start = a;
+      state.event.end = b;
+      state.item.start = a;
+      state.item.end = b;
+    }
+    state.item.days = state.event.days;
+    state.item.hours = state.event.hours;
+    state.item.date = state.event.date;
   }
 
   function bindSolicitar(step) {
     view.querySelectorAll("[data-setcat]").forEach((el) => {
       el.addEventListener("click", () => {
         const id = el.getAttribute("data-setcat");
-        state.request.cat = id;
+        state.item.cat = id;
         const c = catBy(id);
-        state.request.rate = c.rec;
-        state.request.acceptLow = false;
+        state.item.rate = c.rec;
+        state.item.acceptLow = false;
         render();
       });
     });
-    view.querySelectorAll(".qty").forEach((box) => {
-      const key = box.getAttribute("data-qty");
+    view.querySelectorAll(".qty[data-ev]").forEach((box) => {
+      const key = box.getAttribute("data-ev");
       box.querySelectorAll("[data-delta]").forEach((b) => {
         b.addEventListener("click", () => {
+          saveEventFields();
           const d = Number(b.getAttribute("data-delta"));
-          const min = key === "qty" ? 1 : 1;
-          const max = key === "qty" ? 200 : 30;
-          state.request[key] = Math.min(max, Math.max(min, (state.request[key] || 1) + d));
+          state.event[key] = Math.min(30, Math.max(1, (state.event[key] || 1) + d));
           render();
         });
       });
     });
-    const next = document.getElementById("dadosNext");
-    if (next) {
-      next.addEventListener("click", () => {
-        const title = document.getElementById("rq-title");
-        const address = document.getElementById("rq-address");
-        const date = document.getElementById("rq-date");
-        const shift = document.getElementById("rq-shift");
-        if (title) state.request.title = title.value;
-        if (address) state.request.address = address.value;
-        if (date) state.request.date = date.value;
-        if (shift) {
-          const [a, b] = shift.value.split("-");
-          state.request.start = a;
-          state.request.end = b;
-        }
-        go("#/solicitar/valor");
+    view.querySelectorAll(".qty[data-item]").forEach((box) => {
+      const key = box.getAttribute("data-item");
+      box.querySelectorAll("[data-delta]").forEach((b) => {
+        b.addEventListener("click", () => {
+          const sh = document.getElementById("it-shift");
+          if (sh) {
+            const [a, b2] = sh.value.split("-");
+            state.item.start = a;
+            state.item.end = b2;
+          }
+          const d = Number(b.getAttribute("data-delta"));
+          const min = 1;
+          const max = key === "qty" ? 200 : 30;
+          state.item[key] = Math.min(max, Math.max(min, (state.item[key] || 1) + d));
+          render();
+        });
+      });
+    });
+    const evNext = document.getElementById("eventoNext");
+    if (evNext) {
+      evNext.addEventListener("click", () => {
+        saveEventFields();
+        go("#/solicitar/cat");
       });
     }
     const rate = document.getElementById("rq-rate");
@@ -1273,16 +1610,63 @@
     const aceita = document.getElementById("aceiteBaixo");
     if (aceita) {
       aceita.addEventListener("change", () => {
-        state.request.acceptLow = aceita.checked;
+        state.item.acceptLow = aceita.checked;
         render();
       });
     }
+    const add = document.getElementById("addCart");
+    if (add) {
+      add.addEventListener("click", () => {
+        const sh = document.getElementById("it-shift");
+        if (sh) {
+          const [a, b] = sh.value.split("-");
+          state.item.start = a;
+          state.item.end = b;
+        }
+        const it = state.item;
+        const existing = state.cart.find((x) => x.cat === it.cat && x.start === it.start);
+        if (existing) {
+          existing.qty = it.qty;
+          existing.rate = it.rate;
+          existing.days = it.days;
+          existing.hours = it.hours;
+        } else {
+          state.cart.push({
+            id: "c" + Date.now(),
+            cat: it.cat,
+            qty: it.qty,
+            rate: it.rate,
+            days: it.days,
+            hours: it.hours,
+            start: it.start,
+            end: it.end,
+            date: it.date || state.event.date,
+          });
+        }
+        state.toast = "Função adicionada ao evento.";
+        go("#/solicitar/carrinho");
+      });
+    }
+    view.querySelectorAll("[data-removecart]").forEach((el) => {
+      el.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const id = el.getAttribute("data-removecart");
+        state.cart = state.cart.filter((i) => i.id !== id);
+        render();
+      });
+    });
     const conf = document.getElementById("confirmarPedido");
     if (conf) {
       conf.addEventListener("click", () => {
-        const r = state.request;
-        state.lastRequest = pricing(r.cat, r.rate, r.qty, r.hours, r.days);
-        state.toast = "Adiantamento simulado com sucesso.";
+        state.lastEvent = {
+          title: state.event.title,
+          functions: state.cart.map((i) => ({ cat: i.cat, qty: i.qty, rate: i.rate })),
+          total: cartTotal(),
+        };
+        state.confirmed.push(state.lastEvent);
+        state.cart = [];
+        state.toast = "Pedido do evento enviado.";
         go("#/solicitar/ok");
       });
     }
@@ -1291,8 +1675,8 @@
   function applyRate(val) {
     const n = parseRate(val);
     if (!Number.isFinite(n)) return;
-    state.request.rate = n;
-    state.request.acceptLow = false;
+    state.item.rate = n;
+    state.item.acceptLow = false;
     render();
     const input = document.getElementById("rq-rate");
     if (input) {
@@ -1303,6 +1687,7 @@
   }
 
   function bindVaga() {
+    bindSim();
     const acc = view.querySelector("[data-accept]");
     if (acc) {
       acc.addEventListener("click", () => {
@@ -1321,6 +1706,21 @@
         go(`#/vaga/${id}`, { replace: true, dir: "none" });
       });
     }
+  }
+
+  function bindSim() {
+    view.querySelectorAll(".qty[data-sim]").forEach((box) => {
+      const key = box.getAttribute("data-sim");
+      box.querySelectorAll("[data-delta]").forEach((b) => {
+        b.addEventListener("click", () => {
+          const d = Number(b.getAttribute("data-delta"));
+          const min = 1;
+          const max = key === "simHours" ? 24 : 30;
+          state[key] = Math.min(max, Math.max(min, (state[key] || 1) + d));
+          render();
+        });
+      });
+    });
   }
 
   function bindCheckin(id) {
@@ -1358,24 +1758,18 @@
     }
   }
 
-  function bindHomePro() {
+  function bindHomeColab() {
     const chips = view.querySelectorAll("#filterCats .chip");
-    const list = document.getElementById("shiftList");
     chips.forEach((ch) => {
       ch.addEventListener("click", () => {
-        chips.forEach((c) => c.classList.remove("on"));
-        ch.classList.add("on");
-        const f = ch.getAttribute("data-filter");
-        const items = SHIFTS.filter((s) => f === "all" || EVENTS.find((e) => e.id === s.event).cat === f);
-        list.innerHTML = items.length ? items.map((s) => shiftCard(s)).join("") : `<div class="card muted">Nenhuma vaga nesta categoria no momento.</div>`;
-        list.querySelectorAll("[data-go]").forEach((el) => {
-          el.addEventListener("click", () => go(el.getAttribute("data-go")));
-        });
+        state.shiftFilter = ch.getAttribute("data-filter");
+        render();
       });
     });
   }
 
   function bindCarteira() {
+    bindSim();
     const btn = document.getElementById("sacarPix");
     if (!btn) return;
     btn.addEventListener("click", () => openSheet(`
@@ -1406,7 +1800,7 @@
       btn.addEventListener("click", () => {
         state.toast = "Avaliação enviada. Obrigado!";
         state.rating = 0;
-        go(state.role === "profissional" ? "#/plantoes" : "#/home");
+        go(isColab() ? "#/plantoes" : "#/home");
       });
   }
 
@@ -1419,10 +1813,34 @@
       });
   }
 
+  function bindSegmentos() {
+    view.querySelectorAll("[data-upload]").forEach((el) => {
+      el.addEventListener("click", () => {
+        state.uploads[el.getAttribute("data-upload")] = "arquivo_enviado.pdf";
+        render();
+      });
+    });
+    view.querySelectorAll("[data-sendseg]").forEach((el) => {
+      el.addEventListener("click", () => {
+        const id = el.getAttribute("data-sendseg");
+        const c = catBy(id);
+        const ok = c.docs.every((d) => state.uploads[d.id]);
+        if (!ok) {
+          state.toast = "Anexe os documentos deste segmento para enviar.";
+          render();
+          return;
+        }
+        state.segments[id] = "em-analise";
+        state.toast = "Cadastro enviado. Este segmento entra em análise.";
+        render();
+      });
+    });
+  }
+
   function bindPay() {
     view.querySelectorAll("[data-payresto]").forEach((btn) => {
       btn.addEventListener("click", () => {
-        state.toast = "Pagamento da equipe simulado pelas chaves Asael.";
+        state.toast = "Pagamento da equipe simulado pelas contas Asael.";
         render();
       });
     });
@@ -1445,7 +1863,6 @@
     if (s) s.remove();
   }
 
-  /* ------------ start ------------ */
   if (!location.hash || location.hash === "#" || location.hash === "#/") {
     history.replaceState({ dir: "none" }, "", "#/splash");
   }

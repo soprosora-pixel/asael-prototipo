@@ -677,3 +677,58 @@ button svg, .btn svg, a svg, .notice svg, .warn-box svg, .err-box svg, .ok-box s
 .demo-card p { font-size: 12.5px; color: var(--muted); }
 
 .kicker { color: var(--cta); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+
+/* benefits, cart, segments, simulator */
+.benefits { display: grid; gap: 8px; margin: 4px 0 18px; }
+.benefit {
+  display: flex; gap: 12px; align-items: flex-start;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 12px 14px; text-align: left;
+}
+.benefit .ico {
+  width: 36px; height: 36px; border-radius: 11px;
+  background: var(--elevated); color: var(--cta);
+  display: grid; place-items: center; flex-shrink: 0;
+}
+.benefit .ico svg { width: 18px; height: 18px; }
+.benefit b { font-size: 13.5px; display: block; margin-bottom: 2px; font-family: var(--font-title); }
+.benefit p { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+.cart-btn { position: relative; }
+.cart-badge {
+  position: absolute; top: -3px; right: -3px;
+  min-width: 18px; height: 18px; padding: 0 4px;
+  border-radius: 99px; background: var(--cta); color: var(--cta-text);
+  font-size: 10px; font-weight: 800; display: grid; place-items: center;
+  border: 2px solid var(--bg);
+}
+.cart-mini {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  width: 100%; text-align: left; color: inherit;
+  background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.28);
+  border-radius: 16px; padding: 12px 14px; margin: 12px 0 4px;
+}
+.cart-mini b { display: block; font-size: 14px; }
+.cart-line {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 14px; margin-bottom: 10px;
+}
+.cart-line .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.cart-line h3 { font-size: 15px; }
+.seg-card {
+  display: flex; align-items: flex-start; gap: 12px;
+  width: 100%; text-align: left; color: inherit;
+  background: var(--card); border: 1.5px solid var(--border);
+  border-radius: 16px; padding: 12px 14px; margin-bottom: 8px;
+}
+.seg-card.on { border-color: var(--cta); background: rgba(0,212,255,0.06); }
+.seg-card .box {
+  width: 22px; height: 22px; border-radius: 6px; margin-top: 2px;
+  border: 1.5px solid var(--border); display: grid; place-items: center;
+  flex-shrink: 0; color: var(--cta-text); background: transparent;
+}
+.seg-card.on .box { background: var(--cta); border-color: var(--cta); }
+.seg-card .box svg { width: 14px; height: 14px; }
+.sim { margin-top: 8px; }
+.sim-controls { display: flex; gap: 10px; margin: 12px 0; }
+.sim-controls .field { flex: 1; margin: 0; }

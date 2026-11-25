@@ -21,6 +21,8 @@ Fluxos para testar:
 - Empresa: **Solicitar profissionais** — escolha Vigilância, altere o valor da hora para **20,00** (aviso amarelo) ou **19,00** (bloqueio).
 - Profissional: abra uma vaga, aceite, faça check-in com foto (pode usar a câmera) e veja a carteira Asael.
 - Pagamento fora do app aparece como regra de banimento nos termos e nos resumos.
+- **Busca (lupa):** no início, a barra de busca ou o ícone de lupa. O colaborador busca empresas e vagas perto (localização simulada em Joinville) ou por estado/cidade. A empresa busca colaboradores com filtros de segmento, disponibilidade e avaliação. Os resultados são perfis demonstrativos.
+- **Chat:** o ícone de conversa no início, ou a lista em **Conversas**. A conversa entre colaborador e empresa (terceirizada ou contratante que contrata direto) fica bloqueada até o pagamento no app. Depois do pagamento simulado, dá para enviar mensagens (só neste dispositivo). Contatos pessoais não aparecem.
 
 ## Código
 

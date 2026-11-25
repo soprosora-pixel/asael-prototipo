@@ -35,6 +35,9 @@
     nurse: svg(`<circle cx="12" cy="8" r="3.2"/><path d="M4.5 20a7.5 7.5 0 0115 0"/><path d="M12 13v3M10.5 14.5h3"/>`),
     bag: svg(`<path d="M6 8h12l-1 13H7L6 8z"/><path d="M9 8V6a3 3 0 016 0v2"/>`),
     trash: svg(`<path d="M4 7h16M9 7V5h6v2M8 7l1 13h6l1-13"/>`),
+    search: svg(`<circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/>`),
+    chat: svg(`<path d="M5 5h14a2 2 0 012 2v8a2 2 0 01-2 2H9l-4 3v-3H5a2 2 0 01-2-2V7a2 2 0 012-2z"/>`),
+    send: svg(`<path d="M4 12l16-8-6 16-2-6-8-2z"/>`),
   };
 
   const CATS = [
@@ -212,6 +215,74 @@
     { title: "Plantão Shopping Mueller", date: "25 out 2026", value: 168, type: "in" },
   ];
 
+  const UFS = ["AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"];
+
+  const COMPANIES_DIR = [
+    { id: "sul", name: "Sul Seguranças", type: "terceirizada", city: "Joinville", uf: "SC", km: 2.1, vagas: 2, note: "Autorizada pela Polícia Federal" },
+    { id: "aurora", name: "Eventos Aurora", type: "contratante", city: "Joinville", uf: "SC", km: 3.4, vagas: 1, note: "Eventos e produções" },
+    { id: "porto", name: "Porto Seguro Eventos (demo)", type: "contratante", city: "Itajaí", uf: "SC", km: 42, vagas: 1, note: "Perfil demonstrativo" },
+    { id: "serra", name: "Serra Guardiãs (demo)", type: "terceirizada", city: "Blumenau", uf: "SC", km: 55, vagas: 2, note: "Perfil demonstrativo" },
+    { id: "capital", name: "Capital Eventos (demo)", type: "contratante", city: "Florianópolis", uf: "SC", km: 180, vagas: 1, note: "Perfil demonstrativo" },
+    { id: "paulista", name: "Paulista Produções (demo)", type: "contratante", city: "São Paulo", uf: "SP", km: 530, vagas: 3, note: "Perfil demonstrativo" },
+    { id: "litoral", name: "Litoral Festas (demo)", type: "contratante", city: "Curitiba", uf: "PR", km: 130, vagas: 1, note: "Perfil demonstrativo" },
+  ];
+
+  const COLABS_DIR = [
+    { id: "carlos", name: "Carlos Mendes", initials: "CM", avatar: "assets/avatars/avatar-carlos.webp", segs: ["vigilancia","portaria"], stars: 4.9, city: "Joinville", uf: "SC", km: 3.2, avail: "disponivel" },
+    { id: "ana", name: "Ana Paula Souza", initials: "AP", avatar: "assets/avatars/avatar-ana.webp", segs: ["portaria"], stars: 4.8, city: "Joinville", uf: "SC", km: 1.8, avail: "disponivel" },
+    { id: "rafael", name: "Rafael Lima", initials: "RL", avatar: "assets/avatars/avatar-rafael.webp", segs: ["bombeiro"], stars: 5.0, city: "Joinville", uf: "SC", km: 4.1, avail: "plantao" },
+    { id: "lucas", name: "Lucas Ferreira", initials: "LF", avatar: "assets/avatars/avatar-lucas.webp", segs: ["vigilancia"], stars: 4.7, city: "Joinville", uf: "SC", km: 5.6, avail: "disponivel" },
+    { id: "juliana", name: "Juliana Costa", initials: "JC", segs: ["enfermagem"], stars: 4.9, city: "São José", uf: "SC", km: 175, avail: "disponivel" },
+    { id: "bruno", name: "Bruno Alves", initials: "BA", segs: ["limpeza"], stars: 4.6, city: "Joinville", uf: "SC", km: 6.2, avail: "disponivel" },
+    { id: "marina", name: "Marina Duarte (demo)", initials: "MD", segs: ["vigilancia","portaria"], stars: 4.5, city: "Blumenau", uf: "SC", km: 55, avail: "disponivel" },
+    { id: "pedro", name: "Pedro Nunes (demo)", initials: "PN", segs: ["bombeiro","brigadista"], stars: 4.8, city: "Florianópolis", uf: "SC", km: 180, avail: "plantao" },
+    { id: "camila", name: "Camila Rocha (demo)", initials: "CR", segs: ["portaria"], stars: 4.4, city: "Curitiba", uf: "PR", km: 130, avail: "disponivel" },
+    { id: "thiago", name: "Thiago Lopes (demo)", initials: "TL", segs: ["vigilancia"], stars: 4.7, city: "São Paulo", uf: "SP", km: 530, avail: "disponivel" },
+    { id: "fernanda", name: "Fernanda Dias (demo)", initials: "FD", segs: ["limpeza"], stars: 4.6, city: "Itajaí", uf: "SC", km: 42, avail: "disponivel" },
+  ];
+
+  const THREADS = [
+    { id: "expoville-carlos", eventId: "expoville", companyId: "sul", companyName: "Sul Seguranças", companyType: "terceirizada", companyInitials: "SS", colabId: "carlos", colabName: "Carlos Mendes", colabRole: "Vigilante", colabAvatar: "assets/avatars/avatar-carlos.webp", colabInitials: "CM" },
+    { id: "expoville-ana", eventId: "expoville", companyId: "sul", companyName: "Sul Seguranças", companyType: "terceirizada", companyInitials: "SS", colabId: "ana", colabName: "Ana Paula Souza", colabRole: "Controle de acesso", colabAvatar: "assets/avatars/avatar-ana.webp", colabInitials: "AP" },
+    { id: "expoville-rafael", eventId: "expoville", companyId: "sul", companyName: "Sul Seguranças", companyType: "terceirizada", companyInitials: "SS", colabId: "rafael", colabName: "Rafael Lima", colabRole: "Bombeiro civil", colabAvatar: "assets/avatars/avatar-rafael.webp", colabInitials: "RL" },
+    { id: "mueller-carlos", eventId: "mueller", companyId: "aurora", companyName: "Eventos Aurora", companyType: "contratante", companyInitials: "EA", colabId: "carlos", colabName: "Carlos Mendes", colabRole: "Controle de acesso", colabAvatar: "assets/avatars/avatar-carlos.webp", colabInitials: "CM" },
+    { id: "mueller-ana", eventId: "mueller", companyId: "aurora", companyName: "Eventos Aurora", companyType: "contratante", companyInitials: "EA", colabId: "ana", colabName: "Ana Paula Souza", colabRole: "Controle de acesso", colabAvatar: "assets/avatars/avatar-ana.webp", colabInitials: "AP" },
+    { id: "expoville-lucas", eventId: "expoville", companyId: "sul", companyName: "Sul Seguranças", companyType: "terceirizada", companyInitials: "SS", colabId: "lucas", colabName: "Lucas Ferreira", colabRole: "Vigilante", colabAvatar: "assets/avatars/avatar-lucas.webp", colabInitials: "LF" },
+    { id: "expoville-juliana", eventId: "expoville", companyId: "sul", companyName: "Sul Seguranças", companyType: "terceirizada", companyInitials: "SS", colabId: "juliana", colabName: "Juliana Costa", colabRole: "Enfermagem", colabInitials: "JC" },
+    { id: "expoville-bruno", eventId: "expoville", companyId: "sul", companyName: "Sul Seguranças", companyType: "terceirizada", companyInitials: "SS", colabId: "bruno", colabName: "Bruno Alves", colabRole: "Limpeza", colabInitials: "BA" },
+  ];
+
+  const SEED_MSGS = {
+    "expoville-carlos": [
+      { from: "company", text: "Olá, Carlos. Confirmamos seu plantão no Expoville no dia 12 de dezembro, às 18h. O ponto de encontro é a entrada B.", time: "10:12" },
+      { from: "colab", text: "Combinado. Chego às 17h40 com o uniforme.", time: "10:14" },
+      { from: "company", text: "Perfeito. Qualquer ajuste, fale por aqui no app.", time: "10:15" },
+    ],
+    "expoville-ana": [
+      { from: "company", text: "Ana, sua função no Expoville é controle de acesso na entrada principal.", time: "11:02" },
+      { from: "colab", text: "Recebido. Estarei no horário.", time: "11:06" },
+    ],
+    "expoville-rafael": [
+      { from: "company", text: "Rafael, você fica no posto de prevenção junto à palco B.", time: "09:40" },
+    ],
+    "mueller-carlos": [
+      { from: "company", text: "Carlos, o plantão da Black Friday no Mueller começa às 10h, na porta da praça de alimentação.", time: "16:20" },
+    ],
+    "mueller-ana": [
+      { from: "company", text: "Ana, confirmamos você no controle de acesso do Shopping Mueller.", time: "16:22" },
+      { from: "colab", text: "Obrigada, estarei lá.", time: "16:30" },
+    ],
+    "expoville-lucas": [
+      { from: "company", text: "Lucas, seu posto no Expoville é o estacionamento sul.", time: "11:20" },
+    ],
+    "expoville-juliana": [
+      { from: "company", text: "Juliana, a tenda de enfermagem fica atrás do palco A.", time: "11:28" },
+    ],
+    "expoville-bruno": [
+      { from: "company", text: "Bruno, a equipe de limpeza se reúne no apoio 2, às 17h30.", time: "11:31" },
+    ],
+  };
+
   function emptyEvent() {
     return {
       title: "Show no Expoville",
@@ -256,6 +327,9 @@
     simHours: 12,
     simDays: 1,
     shiftFilter: "all",
+    paidEvents: {},
+    messages: {},
+    search: { mode: "perto", located: false, uf: "SC", q: "", seg: "all", avail: "all", minStars: 0 },
   };
 
   const brl = (n) =>
@@ -270,6 +344,61 @@
   const approvedSegs = () => CATS.filter((c) => state.segments[c.id] === "aprovado").map((c) => c.id);
   const cartPeople = () => state.cart.reduce((n, i) => n + i.qty, 0);
   const cartTotal = () => state.cart.reduce((n, i) => n + i.rate * i.hours * i.days * i.qty, 0);
+  const isPaid = (eventId) => !!state.paidEvents[eventId];
+  function myThreads() {
+    if (isColab()) return THREADS.filter((th) => th.colabId === "carlos");
+    if (state.role === "terceirizada") return THREADS.filter((th) => th.companyId === "sul");
+    if (state.role === "contratante") return THREADS.filter((th) => th.companyId === "aurora");
+    return [];
+  }
+  function threadById(id) {
+    return THREADS.find((th) => th.id === id);
+  }
+  function threadMessages(id) {
+    return state.messages[id] || [];
+  }
+  function seedChat(id) {
+    if (!state.messages[id] || !state.messages[id].length) {
+      state.messages[id] = (SEED_MSGS[id] || []).map((m) => ({ ...m }));
+    }
+  }
+  function seedChatsForEvent(eventId) {
+    THREADS.filter((th) => th.eventId === eventId).forEach((th) => seedChat(th.id));
+  }
+  function nowTime() {
+    return new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+  }
+  function availLabel(a) {
+    return a === "plantao" ? "Em plantão" : "Disponível";
+  }
+  function otherName(th) {
+    return isColab() ? th.companyName : th.colabName;
+  }
+  function otherAvatar(th) {
+    if (isColab()) return { initials: th.companyInitials, name: th.companyName };
+    return { initials: th.colabInitials, avatar: th.colabAvatar, name: th.colabName };
+  }
+  function threadFor(eventId, colabName) {
+    return THREADS.find((th) => th.eventId === eventId && th.colabName === colabName);
+  }
+  function eventById(id) {
+    return EVENTS.find((e) => e.id === id);
+  }
+  function segsLabel(ids) {
+    return (ids || []).map((id) => (catBy(id) || {}).short || id).join(" · ");
+  }
+  function typeLabel(type) {
+    return type === "terceirizada" ? "Empresa terceirizada" : "Contratante";
+  }
+  function payableEvents() {
+    const ids = [...new Set(myThreads().map((th) => th.eventId))];
+    return EVENTS.filter((e) => ids.includes(e.id));
+  }
+  function markPaid(eventId) {
+    if (!eventId) return;
+    state.paidEvents[eventId] = true;
+    seedChatsForEvent(eventId);
+  }
 
   function stars(n) {
     const full = Math.round(n);
@@ -352,15 +481,30 @@
     navDir = "right";
     render();
   });
+  window.addEventListener("hashchange", () => {
+    navDir = "left";
+    render();
+  });
+
+  let toastTimer = null;
+  function flashToast(msg) {
+    state.toast = msg;
+    state.keepToast = true;
+  }
 
   function render() {
     appEl.classList.toggle("light", state.light);
     const p = path();
+    if (!state.keepToast) state.toast = null;
+    state.keepToast = false;
     view.innerHTML = route(p);
     bind(p);
     if (state.toast) {
-      setTimeout(() => {
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
         state.toast = null;
+        const el = view.querySelector(".toast");
+        if (el) el.remove();
       }, 2400);
     }
   }
@@ -386,6 +530,9 @@
       case "avaliar": return renderAvaliar(p.id);
       case "perfil": return renderPerfil();
       case "segmentos": return renderSegmentos();
+      case "busca": return renderBusca();
+      case "conversas": return renderConversas();
+      case "chat": return renderChat(p.id);
       default: return renderSplash();
     }
   }
@@ -409,6 +556,23 @@
   function protoBtn() {
     if (!state.role) return "";
     return `<button class="proto-bar" data-go="#/demo" type="button">Protótipo · trocar perfil</button>`;
+  }
+
+  function headerActions() {
+    const locked = myThreads().filter((th) => !isPaid(th.eventId)).length;
+    const unlocked = myThreads().filter((th) => isPaid(th.eventId)).length;
+    const badgeN = unlocked || locked;
+    const badge = badgeN ? `<span class="cart-badge">${badgeN}</span>` : "";
+    return `<div class="header-actions">
+      <button class="icon-btn" data-go="#/busca" aria-label="Buscar">${ic.search}</button>
+      <button class="icon-btn cart-btn" data-go="#/conversas" aria-label="Conversas">${ic.chat}${badge}</button>
+      ${isCompany() ? cartBtn() : `<button class="icon-btn" aria-label="Notificações">${ic.bell}</button>`}
+    </div>`;
+  }
+
+  function searchEntry() {
+    const ph = isColab() ? "Buscar empresas e vagas..." : "Buscar colaboradores disponíveis...";
+    return `<button class="search-entry" data-go="#/busca" type="button">${ic.search} ${ph}</button>`;
   }
 
   function tabbar(active) {
@@ -743,10 +907,11 @@
             <div class="hi">${u.roleLabel}</div>
             <h1>${u.name}</h1>
           </div>
-          ${cartBtn()}
+          ${headerActions()}
         </div>
         <div class="pad">
-          <button class="btn btn-primary" data-go="#/solicitar/evento" style="margin-top:4px">${ic.plus} Solicitar profissionais</button>
+          ${searchEntry()}
+          <button class="btn btn-primary" data-go="#/solicitar/evento">${ic.plus} Solicitar profissionais</button>
           ${
             state.cart.length
               ? `<button class="cart-mini" data-go="#/solicitar/carrinho">
@@ -841,9 +1006,10 @@
             <div class="hi">Olá, Carlos</div>
             <h1>Plantões pra você</h1>
           </div>
-          <button class="icon-btn" aria-label="Notificações">${ic.bell}</button>
+          ${headerActions()}
         </div>
         <div class="pad">
+          ${searchEntry()}
           <div class="balance" style="padding:16px 18px;margin-bottom:14px">
             <div class="lbl">Disponível na conta Asael</div>
             <div class="val" style="font-size:28px;margin-bottom:0">${brl(1760)}</div>
@@ -952,6 +1118,7 @@
         <div class="section-h"><h2>Simular outro período</h2></div>
         ${earningsSim(pay.rate, pay.cut, state.simHours, state.simDays)}
         <div class="notice" style="margin-top:12px">${ic.lock} O pagamento entra só na sua conta Asael, dentro do app. Receber por outra chave ou conta leva ao banimento.</div>
+        ${vagaChatBlock(s)}
         <div style="margin-top:18px">${cta}</div>
         ${accepted && !cin ? `<button class="btn btn-ghost" data-cancel="${s.id}">Cancelar aceite</button>` : ""}
       </div>
@@ -1234,20 +1401,20 @@
         </div>
         <div class="section-h"><h2>Equipe</h2></div>
         ${TEAM.slice(0, ev.status === "confirmado" ? 6 : 3)
-          .map(
-            (t) => `<div class="tx">
+          .map((t) => {
+            const th = threadFor(ev.id, t.name);
+            const chatBtn = th
+              ? `<button class="chat-mini ${isPaid(ev.id) ? "" : "locked"}" data-go="#/chat/${th.id}" aria-label="Conversar com ${t.name}">${isPaid(ev.id) ? ic.chat : ic.lock}</button>`
+              : "";
+            return `<div class="tx">
             ${avatar(t)}
             <div class="mid"><b>${t.name}</b><span class="help">${t.role} • ${stars(t.stars)}</span></div>
-          </div>`
-          )
+            ${chatBtn}
+          </div>`;
+          })
           .join("")}
         <p class="help" style="margin-top:8px">${ev.status === "confirmado" ? `${evTotalPeople(ev)} colaboradores confirmados` : "Aguardando mais aceites"}</p>
-        ${
-          isCompany()
-            ? `<button class="btn btn-primary" style="margin-top:16px" data-payresto="${ev.id}">Pagar equipe no app • ${brl(total)}</button>
-               <p class="help" style="text-align:center;margin-top:8px">O pagamento é feito de uma vez, para as contas Asael de toda a equipe.</p>`
-            : ""
-        }
+        ${eventPayAndChat(ev, total)}
       </div>
       ${toastEl()}
     </section>`;
@@ -1289,38 +1456,76 @@
   }
 
   function renderPagamentos() {
-    const ev = EVENTS[0];
-    const total = evCompanyTotal(ev);
+    const list = payableEvents();
+    const events = list.length ? list : [EVENTS[0]];
     return `<section class="screen ${anim()}">
       ${protoBtn()}
       <div class="scroll has-nav pad" style="padding-top:16px">
         <h1 style="font-size:24px;margin-bottom:6px">Pagamentos</h1>
-        <p class="muted small" style="margin-bottom:14px">Um único pagamento cobre toda a equipe do evento, só pelas contas Asael.</p>
+        <p class="muted small" style="margin-bottom:14px">Um único pagamento cobre toda a equipe do evento, só pelas contas Asael. Depois do pagamento, o chat com os colaboradores é liberado.</p>
         ${benefits([
           { icon: ic.lock, t: "Tudo no app, com comprovante", d: "Pague a equipe de uma vez e tenha o registro pronto para a contabilidade." },
           { icon: ic.card, t: "Sem pagamento por fora", d: "Quem pagar fora do aplicativo é banido." },
+          { icon: ic.chat, t: "Chat liberado após o pagamento", d: "A conversa com a equipe abre só quando o pagamento é confirmado no app." },
         ])}
-        <div class="balance">
-          <div class="lbl">Próximo pagamento • ${ev.title}</div>
-          <div class="val" style="font-size:28px">${brl(total)}</div>
-          <button class="btn btn-primary" data-payresto="expoville">Pagar equipe no app</button>
-        </div>
-        <div class="card" style="margin-top:14px">
-          ${ev.functions
-            .map((f) => `<div class="summary-row"><span class="k">${catBy(f.cat).short} • ${f.qty} × ${brlH(f.rate)}</span><span class="v">${brl(f.rate * ev.hours * ev.days * f.qty)}</span></div>`)
-            .join("")}
-          <div class="summary-row total"><span class="k">Total</span><span class="v">${brl(total)}</span></div>
-        </div>
-        <div class="card" style="margin-top:12px">
+        ${events.map((ev) => paymentEventCard(ev)).join("")}
+        ${
+          state.role === "contratante" && isPaid("mueller")
+            ? ""
+            : `<div class="card" style="margin-top:12px">
           <div class="tx">
             <div class="ico">${ic.check}</div>
-            <div class="mid"><b>Pagamento • Black Friday Mueller</b><span class="help">20 nov • ${brl(16 * 12 * 8)}</span></div>
+            <div class="mid"><b>Pagamento • plantão anterior (demo)</b><span class="help">20 nov • ${brl(16 * 12 * 8)}</span></div>
           </div>
-        </div>
+        </div>`
+        }
       </div>
       ${tabbar("pagamentos")}
       ${toastEl()}
     </section>`;
+  }
+
+  function paymentEventCard(ev) {
+    const total = evCompanyTotal(ev);
+    const paid = isPaid(ev.id);
+    return `<div class="balance" style="margin-bottom:12px">
+      <div class="lbl">${paid ? "Pago" : "Próximo pagamento"} • ${ev.title}</div>
+      <div class="val" style="font-size:28px">${brl(total)}</div>
+      ${
+        paid
+          ? `<button class="btn btn-primary" data-go="#/conversas">Abrir conversas da equipe</button>`
+          : `<button class="btn btn-primary" data-payresto="${ev.id}">Pagar equipe no app</button>`
+      }
+      <div class="card" style="margin-top:14px;background:rgba(5,10,24,0.35)">
+        ${ev.functions
+          .map((f) => `<div class="summary-row"><span class="k">${catBy(f.cat).short} • ${f.qty} × ${brlH(f.rate)}</span><span class="v">${brl(f.rate * ev.hours * ev.days * f.qty)}</span></div>`)
+          .join("")}
+        <div class="summary-row total"><span class="k">Total</span><span class="v">${brl(total)}</span></div>
+      </div>
+    </div>`;
+  }
+
+  function eventPayAndChat(ev, total) {
+    if (!isCompany()) return "";
+    if (isPaid(ev.id)) {
+      return `<button class="btn btn-primary" style="margin-top:16px" data-go="#/conversas">${ic.chat} Conversas da equipe</button>
+        <p class="help" style="text-align:center;margin-top:8px">Pagamento confirmado. O chat com os colaboradores já está liberado.</p>`;
+    }
+    return `<button class="btn btn-primary" style="margin-top:16px" data-payresto="${ev.id}">Pagar equipe no app • ${brl(total)}</button>
+      <p class="help" style="text-align:center;margin-top:8px">O pagamento é feito de uma vez, para as contas Asael de toda a equipe. O chat libera depois do pagamento.</p>`;
+  }
+
+  function vagaChatBlock(s) {
+    const th = THREADS.find((x) => x.eventId === s.event && x.colabId === "carlos");
+    if (!th) return "";
+    const paid = isPaid(s.event);
+    const ev = eventById(s.event);
+    const who = th.companyName;
+    if (paid) {
+      return `<button class="btn btn-ghost" style="margin-top:12px" data-go="#/chat/${th.id}">${ic.chat} Conversar com ${who}</button>`;
+    }
+    return `<div class="notice" style="margin-top:12px">${ic.lock} O chat com ${who} libera após o pagamento do evento${ev ? ` “${ev.title}”` : ""}. Contatos pessoais ficam ocultos. Combinar pagamento fora do app leva ao banimento.</div>
+      <button class="btn btn-ghost" style="margin-top:10px" data-go="#/chat/${th.id}">${ic.lock} Ver conversa (bloqueada)</button>`;
   }
 
   function renderAvaliar(id) {
@@ -1411,6 +1616,295 @@
   }
 
   /* ------------ events ------------ */
+
+  function renderBusca() {
+    const s = state.search;
+    const colab = isColab();
+    const title = colab ? "Buscar empresas e vagas" : "Buscar colaboradores";
+    const back = "#/home";
+    return `<section class="screen ${anim()}">
+      ${protoBtn()}
+      ${topbar(title, back)}
+      <div class="scroll pad" style="padding-bottom:calc(24px + var(--safe-b))">
+        <div class="mode-tabs">
+          <button type="button" class="${s.mode === "perto" ? "on" : ""}" data-mode="perto">Perto de mim</button>
+          <button type="button" class="${s.mode === "estado" ? "on" : ""}" data-mode="estado">Buscar por estado</button>
+        </div>
+        ${
+          s.mode === "perto"
+            ? `<button type="button" class="loc-btn ${s.located ? "on" : ""}" id="useLoc">${ic.pin} ${s.located ? "Localização simulada: Joinville, SC" : "Usar minha localização"}</button>`
+            : `<div class="filter-row">
+                <div class="field"><label>Estado</label>
+                  <select id="ufSel">${UFS.map((uf) => `<option value="${uf}" ${s.uf === uf ? "selected" : ""}>${uf}</option>`).join("")}</select>
+                </div>
+                <div class="field"><label>Cidade ou nome</label>
+                  <input id="qCity" type="search" placeholder="Ex.: Joinville" value="${s.q || ""}" />
+                </div>
+              </div>`
+        }
+        ${
+          colab
+            ? ""
+            : `<div class="filter-row-3">
+                <div class="field"><label>Segmento</label>
+                  <select id="segSel">
+                    <option value="all" ${s.seg === "all" ? "selected" : ""}>Todos</option>
+                    ${CATS.map((c) => `<option value="${c.id}" ${s.seg === c.id ? "selected" : ""}>${c.short}</option>`).join("")}
+                  </select>
+                </div>
+                <div class="field"><label>Disponibilidade</label>
+                  <select id="availSel">
+                    <option value="all" ${s.avail === "all" ? "selected" : ""}>Todas</option>
+                    <option value="disponivel" ${s.avail === "disponivel" ? "selected" : ""}>Disponível</option>
+                    <option value="plantao" ${s.avail === "plantao" ? "selected" : ""}>Em plantão</option>
+                  </select>
+                </div>
+                <div class="field"><label>Avaliação</label>
+                  <select id="starSel">
+                    <option value="0" ${Number(s.minStars) === 0 ? "selected" : ""}>Todas</option>
+                    <option value="4" ${Number(s.minStars) === 4 ? "selected" : ""}>4,0 ★ ou mais</option>
+                    <option value="4.5" ${Number(s.minStars) === 4.5 ? "selected" : ""}>4,5 ★ ou mais</option>
+                    <option value="4.8" ${Number(s.minStars) === 4.8 ? "selected" : ""}>4,8 ★ ou mais</option>
+                  </select>
+                </div>
+              </div>`
+        }
+        <p class="help" style="margin-bottom:12px">Os resultados abaixo são perfis demonstrativos, criados só para este protótipo.</p>
+        <div id="searchResults">${searchResultsHtml()}</div>
+      </div>
+      ${toastEl()}
+    </section>`;
+  }
+
+  function filteredCompanies() {
+    const s = state.search;
+    let list = COMPANIES_DIR.slice();
+    if (s.mode === "perto") {
+      if (!s.located) return { needLoc: true, list: [] };
+      list = list.filter((c) => c.uf === "SC" && c.km <= 80).sort((a, b) => a.km - b.km);
+    } else {
+      list = list.filter((c) => c.uf === s.uf);
+      const q = (s.q || "").trim().toLowerCase();
+      if (q) list = list.filter((c) => `${c.name} ${c.city}`.toLowerCase().includes(q));
+    }
+    return { needLoc: false, list };
+  }
+
+  function filteredColabs() {
+    const s = state.search;
+    let list = COLABS_DIR.slice();
+    if (s.mode === "perto") {
+      if (!s.located) return { needLoc: true, list: [] };
+      list = list.filter((c) => c.uf === "SC" && c.km <= 80).sort((a, b) => a.km - b.km);
+    } else {
+      list = list.filter((c) => c.uf === s.uf);
+      const q = (s.q || "").trim().toLowerCase();
+      if (q) list = list.filter((c) => `${c.name} ${c.city}`.toLowerCase().includes(q));
+    }
+    if (s.seg && s.seg !== "all") list = list.filter((c) => c.segs.includes(s.seg));
+    if (s.avail && s.avail !== "all") list = list.filter((c) => c.avail === s.avail);
+    if (Number(s.minStars) > 0) list = list.filter((c) => c.stars >= Number(s.minStars));
+    return { needLoc: false, list };
+  }
+
+  function searchResultsHtml() {
+    if (isColab()) return companyResultsHtml();
+    return colabResultsHtml();
+  }
+
+  function companyResultsHtml() {
+    const { needLoc, list } = filteredCompanies();
+    if (needLoc) {
+      return `<div class="card muted">Ative “Usar minha localização” para ver empresas e vagas perto de você. A localização deste protótipo é simulada em Joinville, SC.</div>`;
+    }
+    if (!list.length) return `<div class="card muted">Nenhuma empresa encontrada com esses filtros.</div>`;
+    return list
+      .map((c) => {
+        const evs = (c.events || companyEventIds(c.id)).map((id) => eventById(id)).filter(Boolean);
+        const vagaTxt = evs.length
+          ? evs.map((e) => `${e.title} • ${e.when}`).join(" · ")
+          : `${c.vagas} vaga${c.vagas === 1 ? "" : "s"} demonstrativa${c.vagas === 1 ? "" : "s"}`;
+        const km = state.search.mode === "perto" && state.search.located ? `<span>${c.km.toString().replace(".", ",")} km</span>` : "";
+        return `<div class="result-card">
+          <div class="avatar">${initialsOf(c.name)}</div>
+          <div class="body">
+            <div class="demo-tag">Perfil demonstrativo</div>
+            <h3>${c.name}</h3>
+            <div class="result-meta">
+              <span>${typeLabel(c.type)}</span>
+              <span>${ic.pin} ${c.city}, ${c.uf}</span>
+              ${km}
+            </div>
+            <p class="help" style="margin-top:6px">${c.note}</p>
+            <p class="small" style="margin-top:6px">${vagaTxt}</p>
+            ${
+              evs[0]
+                ? `<button class="btn btn-ghost btn-sm" style="margin-top:10px;width:auto" data-go="#/vaga/${shiftForEvent(evs[0].id)}">Ver vaga</button>`
+                : `<p class="help" style="margin-top:8px">Cadastro demonstrativo — sem vaga clicável neste protótipo.</p>`
+            }
+          </div>
+        </div>`;
+      })
+      .join("");
+  }
+
+  function colabResultsHtml() {
+    const { needLoc, list } = filteredColabs();
+    if (needLoc) {
+      return `<div class="card muted">Ative “Usar minha localização” para ver colaboradores disponíveis perto de você. A localização deste protótipo é simulada em Joinville, SC.</div>`;
+    }
+    if (!list.length) return `<div class="card muted">Nenhum colaborador encontrado com esses filtros.</div>`;
+    return list
+      .map((c) => {
+        const km = state.search.mode === "perto" && state.search.located ? `<span>${c.km.toString().replace(".", ",")} km</span>` : "";
+        return `<div class="result-card">
+          ${avatar(c)}
+          <div class="body">
+            <div class="demo-tag">Perfil demonstrativo</div>
+            <h3>${c.name}</h3>
+            <div class="result-meta">
+              <span>${segsLabel(c.segs)}</span>
+              <span>${availLabel(c.avail)}</span>
+              <span>${ic.pin} ${c.city}, ${c.uf}</span>
+              ${km}
+            </div>
+            <div style="margin-top:6px">${stars(c.stars)}</div>
+          </div>
+        </div>`;
+      })
+      .join("");
+  }
+
+  function companyEventIds(id) {
+    if (id === "sul") return ["expoville"];
+    if (id === "aurora") return ["mueller"];
+    return [];
+  }
+
+  function shiftForEvent(eventId) {
+    const s = SHIFTS.find((x) => x.event === eventId);
+    return s ? s.id : "s1";
+  }
+
+  function initialsOf(name) {
+    return name
+      .split(" ")
+      .filter((w) => w[0] && w[0] === w[0].toUpperCase() && !w.startsWith("("))
+      .slice(0, 2)
+      .map((w) => w[0])
+      .join("");
+  }
+
+  function renderConversas() {
+    const list = myThreads();
+    return `<section class="screen ${anim()}">
+      ${protoBtn()}
+      ${topbar("Conversas", "#/home")}
+      <div class="scroll pad" style="padding-bottom:calc(24px + var(--safe-b))">
+        <p class="muted small" style="margin-bottom:14px">O chat com a outra parte libera depois do pagamento no app. Contatos pessoais ficam ocultos. Combinar pagamento fora do aplicativo leva ao banimento.</p>
+        ${
+          list.length
+            ? list.map((th) => threadRow(th)).join("")
+            : `<div class="card muted">Nenhuma conversa neste perfil de demonstração.</div>`
+        }
+      </div>
+      ${toastEl()}
+    </section>`;
+  }
+
+  function threadRow(th) {
+    const paid = isPaid(th.eventId);
+    const ev = eventById(th.eventId);
+    const msgs = threadMessages(th.id);
+    const last = msgs[msgs.length - 1];
+    const preview = paid
+      ? last
+        ? last.text
+        : "Conversa liberada. Envie a primeira mensagem."
+      : "O chat libera após o pagamento";
+    const who = otherAvatar(th);
+    const sub = ev ? ev.title : th.eventId;
+    const status = paid
+      ? `<span class="thread-status open">${ic.check} Liberada</span>`
+      : `<span class="thread-status locked">${ic.lock} Bloqueada</span>`;
+    return `<button class="chat-thread" data-go="#/chat/${th.id}">
+      ${avatar(who)}
+      <div class="mid">
+        <b>${otherName(th)}</b>
+        <div class="preview">${preview}</div>
+        <span class="help">${sub}${isColab() ? "" : ` • ${th.colabRole}`}</span>
+      </div>
+      ${status}
+    </button>`;
+  }
+
+  function renderChat(id) {
+    const th = threadById(id);
+    if (!th) {
+      return `<section class="screen ${anim()}">
+        ${topbar("Conversa", "#/conversas")}
+        <div class="pad"><div class="card muted">Conversa não encontrada neste protótipo.</div></div>
+      </section>`;
+    }
+    const paid = isPaid(th.eventId);
+    const ev = eventById(th.eventId);
+    const title = otherName(th);
+    if (!paid) return renderLockedChat(th, ev);
+    seedChat(th.id);
+    const msgs = threadMessages(th.id);
+    return `<section class="screen chat-screen ${anim()}">
+      ${topbar(title, "#/conversas")}
+      <div class="notice chat-banner">${ic.lock} Contatos pessoais ficam ocultos. Combinar pagamento fora do aplicativo leva ao banimento dos dois lados.${ev ? ` Evento: ${ev.title}.` : ""}</div>
+      <div class="msgs" id="msgs">${msgs.map((m) => bubbleHtml(m)).join("")}</div>
+      <form class="composer" id="composer">
+        <input id="chatInput" type="text" placeholder="Mensagem" autocomplete="off" maxlength="400" />
+        <button class="send" type="submit" aria-label="Enviar">${ic.send}</button>
+      </form>
+      ${toastEl()}
+    </section>`;
+  }
+
+  function bubbleHtml(m) {
+    const mine = isColab() ? m.from === "colab" : m.from === "company";
+    return `<div class="bubble ${mine ? "me" : "them"}">${escapeHtml(m.text)}<span class="t">${m.time}</span></div>`;
+  }
+
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function renderLockedChat(th, ev) {
+    const who = otherName(th);
+    const evTitle = ev ? ev.title : "este evento";
+    const companyView = isCompany();
+    const total = ev ? evCompanyTotal(ev) : 0;
+    return `<section class="screen chat-screen ${anim()}">
+      ${topbar(who, "#/conversas")}
+      <div class="chat-locked">
+        <div class="lock-ico">${ic.lock}</div>
+        <h2 style="font-size:20px;margin-bottom:8px">O chat libera após o pagamento</h2>
+        <p class="muted small" style="max-width:320px;margin-bottom:14px">
+          ${
+            companyView
+              ? `Pague a equipe no app para conversar com ${th.colabName} sobre ${evTitle}. Contatos pessoais ficam ocultos.`
+              : `${th.companyName} ainda não concluiu o pagamento de ${evTitle} no app. Quando o pagamento for confirmado, a conversa abre por aqui. Contatos pessoais ficam ocultos.`
+          }
+        </p>
+        <div class="notice" style="text-align:left;max-width:320px">${ic.lock} Combinar pagamento fora do aplicativo leva ao banimento dos dois lados.</div>
+        ${
+          companyView && ev
+            ? `<button class="btn btn-primary" style="margin-top:18px;width:100%;max-width:320px" data-payresto="${ev.id}">Pagar equipe no app • ${brl(total)}</button>`
+            : `<button class="btn btn-ghost" style="margin-top:18px;width:100%;max-width:320px" data-simpay="${th.eventId}">Protótipo · simular pagamento da empresa</button>`
+        }
+      </div>
+      ${toastEl()}
+    </section>`;
+  }
+
   function bind(p) {
     view.querySelectorAll("[data-go]").forEach((el) => {
       el.addEventListener("click", (e) => {
@@ -1442,9 +1936,11 @@
     if (p.name === "carteira") bindCarteira();
     if (p.name === "avaliar") bindAvaliar();
     if (p.name === "perfil") bindPerfil();
-    if (p.name === "evento" || p.name === "pagamentos") bindPay();
+    if (p.name === "evento" || p.name === "pagamentos" || p.name === "chat") bindPay();
     if (p.name === "vaga" || p.name === "carteira") bindSim();
     if (p.name === "segmentos") bindSegmentos();
+    if (p.name === "busca") bindBusca();
+    if (p.name === "chat") bindChat(p.id);
     if (p.name === "splash") {
       clearTimeout(window.__asaelSplash);
       window.__asaelSplash = setTimeout(() => {
@@ -1529,6 +2025,7 @@
       el.addEventListener("click", () => {
         state.role = el.getAttribute("data-role");
         state.toast = null;
+        state.search = { mode: "perto", located: false, uf: "SC", q: "", seg: "all", avail: "all", minStars: 0 };
         if (state.role === "colaborador") state.segments = demoSegments();
         go("#/home");
       });
@@ -1643,7 +2140,7 @@
             date: it.date || state.event.date,
           });
         }
-        state.toast = "Função adicionada ao evento.";
+        flashToast("Função adicionada ao evento.");
         go("#/solicitar/carrinho");
       });
     }
@@ -1666,7 +2163,7 @@
         };
         state.confirmed.push(state.lastEvent);
         state.cart = [];
-        state.toast = "Pedido do evento enviado.";
+        flashToast("Pedido do evento enviado.");
         go("#/solicitar/ok");
       });
     }
@@ -1693,7 +2190,7 @@
       acc.addEventListener("click", () => {
         const id = acc.getAttribute("data-accept");
         state.accepted[id] = true;
-        state.toast = "Plantão aceito. No dia, faça o check-in no local.";
+        flashToast("Plantão aceito. No dia, faça o check-in no local.");
         go(`#/vaga/${id}`, { replace: true, dir: "none" });
       });
     }
@@ -1702,7 +2199,7 @@
       cancel.addEventListener("click", () => {
         const id = cancel.getAttribute("data-cancel");
         delete state.accepted[id];
-        state.toast = "Aceite cancelado.";
+        flashToast("Aceite cancelado.");
         go(`#/vaga/${id}`, { replace: true, dir: "none" });
       });
     }
@@ -1746,12 +2243,12 @@
         if (current === "in") {
           state.checkins[id] = "done";
           state.checkinPhoto = null;
-          state.toast = "Check-out registrado. Valor liberado na carteira Asael.";
+          flashToast("Check-out registrado. Valor liberado na carteira Asael.");
           go(`#/avaliar/${id}`);
         } else {
           state.checkins[id] = "in";
           state.checkinPhoto = null;
-          state.toast = "Check-in confirmado. Bom plantão!";
+          flashToast("Check-in confirmado. Bom plantão!");
           go(`#/vaga/${id}`);
         }
       });
@@ -1782,7 +2279,7 @@
     `, (sheet) => {
       sheet.querySelector("#confirmarSaque").addEventListener("click", () => {
         closeSheet();
-        state.toast = "Saque simulado. No app real, cai em até 1 dia útil.";
+        flashToast("Saque simulado. No app real, cai em até 1 dia útil.");
         render();
       });
     }));
@@ -1798,7 +2295,7 @@
     const btn = document.getElementById("enviarAval");
     if (btn)
       btn.addEventListener("click", () => {
-        state.toast = "Avaliação enviada. Obrigado!";
+        flashToast("Avaliação enviada. Obrigado!");
         state.rating = 0;
         go(isColab() ? "#/plantoes" : "#/home");
       });
@@ -1826,12 +2323,12 @@
         const c = catBy(id);
         const ok = c.docs.every((d) => state.uploads[d.id]);
         if (!ok) {
-          state.toast = "Anexe os documentos deste segmento para enviar.";
+          flashToast("Anexe os documentos deste segmento para enviar.");
           render();
           return;
         }
         state.segments[id] = "em-analise";
-        state.toast = "Cadastro enviado. Este segmento entra em análise.";
+        flashToast("Cadastro enviado. Este segmento entra em análise.");
         render();
       });
     });
@@ -1840,9 +2337,104 @@
   function bindPay() {
     view.querySelectorAll("[data-payresto]").forEach((btn) => {
       btn.addEventListener("click", () => {
-        state.toast = "Pagamento da equipe simulado pelas contas Asael.";
+        const id = btn.getAttribute("data-payresto");
+        markPaid(id);
+        flashToast("Pagamento da equipe simulado. As conversas foram liberadas.");
+        const p = path();
+        if (p.name === "chat") go(`#/chat/${p.id}`, { dir: "none", replace: true });
+        else render();
+      });
+    });
+    view.querySelectorAll("[data-simpay]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = btn.getAttribute("data-simpay");
+        markPaid(id);
+        flashToast("Pagamento da empresa simulado. A conversa foi liberada.");
+        const p = path();
+        if (p.name === "chat") go(`#/chat/${p.id}`, { dir: "none", replace: true });
+        else render();
+      });
+    });
+  }
+
+  function bindBusca() {
+    view.querySelectorAll("[data-mode]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        state.search.mode = btn.getAttribute("data-mode");
         render();
       });
+    });
+    const loc = view.querySelector("#useLoc");
+    if (loc) {
+      loc.addEventListener("click", () => {
+        state.search.located = true;
+        state.search.mode = "perto";
+        state.search.uf = "SC";
+        flashToast("Localização simulada: Joinville, SC.");
+        render();
+      });
+    }
+    const uf = view.querySelector("#ufSel");
+    if (uf) {
+      uf.addEventListener("change", () => {
+        state.search.uf = uf.value;
+        refreshSearchResults();
+      });
+    }
+    const q = view.querySelector("#qCity");
+    if (q) {
+      q.addEventListener("input", () => {
+        state.search.q = q.value;
+        refreshSearchResults();
+      });
+    }
+    const seg = view.querySelector("#segSel");
+    if (seg) {
+      seg.addEventListener("change", () => {
+        state.search.seg = seg.value;
+        refreshSearchResults();
+      });
+    }
+    const avail = view.querySelector("#availSel");
+    if (avail) {
+      avail.addEventListener("change", () => {
+        state.search.avail = avail.value;
+        refreshSearchResults();
+      });
+    }
+    const star = view.querySelector("#starSel");
+    if (star) {
+      star.addEventListener("change", () => {
+        state.search.minStars = Number(star.value);
+        refreshSearchResults();
+      });
+    }
+  }
+
+  function refreshSearchResults() {
+    const box = view.querySelector("#searchResults");
+    if (box) box.innerHTML = searchResultsHtml();
+  }
+
+  function bindChat(id) {
+    const form = view.querySelector("#composer");
+    const input = view.querySelector("#chatInput");
+    const box = view.querySelector("#msgs");
+    if (box) box.scrollTop = box.scrollHeight;
+    if (!form || !input) return;
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const text = input.value.trim();
+      if (!text) return;
+      seedChat(id);
+      state.messages[id].push({
+        from: isColab() ? "colab" : "company",
+        text,
+        time: nowTime(),
+      });
+      input.value = "";
+      box.innerHTML = threadMessages(id).map((m) => bubbleHtml(m)).join("");
+      box.scrollTop = box.scrollHeight;
     });
   }
 
